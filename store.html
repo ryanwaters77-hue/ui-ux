@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="uploads/grok_image_1785190907713.jpg">
+<link rel="stylesheet" href="_ds/nocturne-c670020c-d868-4314-9b8c-8cad9d5cba97/styles.css">
+<script src="_ds/nocturne-c670020c-d868-4314-9b8c-8cad9d5cba97/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+  :root {
+    --color-accent: #5aa9fb;
+    --color-accent-100: #f0f7ff;
+    --color-accent-200: #dbeafe;
+    --color-accent-300: #bcd9fd;
+    --color-accent-400: #8ec1fc;
+    --color-accent-500: #5aa9fb;
+    --color-accent-600: #3f8ada;
+    --color-accent-700: #2e69a8;
+    --color-accent-800: #234b78;
+    --color-accent-900: #17304c;
+    --color-accent-2: #5aa9fb;
+    --color-accent-2-300: #bcd9fd;
+    --color-accent-2-400: #8ec1fc;
+    --color-accent-2-500: #5aa9fb;
+    --color-section: #143259;
+    --color-section-glow: #1d477c;
+    --color-section-ghost: #2f6aa8;
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; background:var(--color-bg); }
+  a { color:var(--color-accent); text-decoration:none; }
+  a:hover { color:var(--color-accent-400); }
+  :focus-visible { outline:2px solid var(--color-accent); outline-offset:2px; }
+</style>
+</helmet>
+<main style="background:var(--color-bg); color:var(--color-text); font-family:var(--font-body); min-height:100vh;">
+
+  <nav style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-8); padding:{{ navPad }}; border-bottom:1px solid var(--color-divider);">
+    <a href="index.html" aria-label="Trace IQ" style="display:block; width:132px; height:44px; overflow:hidden; position:relative; mask-image:radial-gradient(ellipse 62% 62% at 50% 50%, #000 55%, transparent 100%); -webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 50%, #000 55%, transparent 100%);">
+      <img src="uploads/grok_image_1785190907713.jpg" alt="Trace IQ" style="position:absolute; left:-50px; top:-93px; width:225px; height:225px; max-width:none; object-fit:cover; display:block;" /></a>
+    <div style="display:{{ navDisplay }}; align-items:center; gap:var(--space-8);">
+      <a href="index.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-neutral-400);" style-hover="color:var(--color-text)">Home</a>
+      <a href="reports.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-neutral-400);" style-hover="color:var(--color-text)">Reports</a>
+      <a href="intake.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-neutral-400);" style-hover="color:var(--color-text)">Intake</a>
+      <a href="store.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-text);">Store</a>
+    </div>
+    <span style="display:flex; align-items:center; gap:var(--space-2); font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-neutral-400); white-space:nowrap;"><i class="ph ph-lock-simple" style="font-size:1rem; color:var(--color-accent);"></i>Secure Payment</span>
+  </nav>
+
+  <header style="padding:{{ headPad }}; max-width:1400px; margin:0 auto;">
+    <p style="margin:0 0 var(--space-3); font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-accent-300);">Products &amp; Payment</p>
+    <h1 style="margin:0 0 var(--space-4); max-width:32rem; font-size:{{ h1Size }}; line-height:1.06; letter-spacing:-0.025em; color:var(--color-text);">Pick a report. Pay securely.</h1>
+    <p style="margin:0; max-width:42rem; font-size:{{ leadSize }}; line-height:1.6; color:var(--color-neutral-300); text-wrap:pretty;">Checkout runs on our secure payment form. You'll get a confirmation and an intake link the moment payment clears.</p>
+  </header>
+
+  <section data-screen-label="Products" style="padding:{{ bodyPad }}; max-width:1400px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:{{ bodyCols }}; gap:{{ bodyGap }}; align-items:start;">
+
+      <div style="display:flex; flex-direction:column; gap:var(--space-4);">
+        <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Catalog</p>
+        <sc-for list="{{ products }}" as="item" hint-placeholder-count="4">
+          <button type="button" onClick="{{ item.select }}" style="{{ item.style }}">
+            <span style="display:flex; align-items:baseline; justify-content:space-between; gap:var(--space-4);">
+              <span style="font-family:var(--font-heading); font-size:1rem; color:var(--color-text);">{{ item.name }}</span>
+              <span style="font-family:var(--font-heading); font-size:1rem; color:var(--color-accent); white-space:nowrap;">{{ item.price }}</span>
+            </span>
+            <span style="display:block; margin-top:var(--space-2); font-size:0.85rem; line-height:1.5; color:var(--color-neutral-300);">{{ item.tagline }}</span>
+            <span style="display:block; margin-top:var(--space-3); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-neutral-500);">{{ item.sku }}</span>
+          </button>
+        </sc-for>
+        <p style="margin:var(--space-2) 0 0; font-size:0.85rem; line-height:1.55; color:var(--color-neutral-400);">Comparing tiers? <a href="compare.html">See every feature</a>.</p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:var(--space-6);">
+        <div class="card" style="padding:{{ formPad }};">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:var(--space-6); flex-wrap:wrap; padding-bottom:var(--space-6); border-bottom:1px solid var(--color-divider);">
+            <div>
+              <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Selected product</p>
+              <p style="margin:0 0 var(--space-2); font-family:var(--font-heading); font-size:1.25rem; color:var(--color-text);">{{ selectedName }}</p>
+              <p style="margin:0; font-size:0.9rem; color:var(--color-accent-300);">{{ selectedTagline }}</p>
+            </div>
+            <p style="margin:0; font-family:var(--font-heading); font-size:2rem; line-height:1; color:var(--color-accent); white-space:nowrap;">{{ selectedPrice }}</p>
+          </div>
+
+          <div style="padding-top:var(--space-6); display:flex; flex-direction:column; gap:var(--space-6);">
+            <sc-if value="{{ hasPaymentLink }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; flex-direction:column; gap:var(--space-4);">
+                <a class="btn btn-primary btn-block" href="{{ paymentLink }}" target="_blank" rel="noopener" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap;">Pay {{ selectedPrice }} — {{ selectedName }}</a>
+                <p style="margin:0; display:flex; gap:var(--space-3); font-size:0.82rem; line-height:1.55; color:var(--color-neutral-400);"><i class="ph ph-lock-simple" style="color:var(--color-accent); font-size:1rem; margin-top:2px;"></i><span>Opens our secure payment form in a new tab. Card details are handled by our PCI-compliant processor.</span></p>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ needsSetup }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex; flex-direction:column; gap:var(--space-4);">
+                <button type="button" class="btn btn-primary btn-block" onClick="{{ demoPay }}" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap;">Pay {{ selectedPrice }}</button>
+                <p style="margin:0; display:flex; gap:var(--space-3); font-size:0.82rem; line-height:1.55; color:var(--color-neutral-400);"><i class="ph ph-info" style="color:var(--color-accent); font-size:1rem; margin-top:2px;"></i><span>Demo mode. Add a payment form URL per tier in this page's tweaks to take live payments.</span></p>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ demoPaid }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; flex-direction:column; gap:var(--space-3); align-items:flex-start; border-top:1px solid var(--color-divider); padding-top:var(--space-6);">
+                <i class="ph ph-check-circle" style="font-size:1.6rem; color:var(--color-accent);"></i>
+                <p style="margin:0; font-family:var(--font-heading); font-size:1.15rem; color:var(--color-text);">Demo payment confirmed.</p>
+                <p style="margin:0; max-width:30rem; font-size:0.9rem; line-height:1.6; color:var(--color-neutral-300);">In live mode you'd return here with a confirmation for the {{ selectedName }} and continue to intake.</p>
+                <a class="btn btn-ghost" href="intake.html?plan={{ selectedId }}" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap;">Continue to intake</a>
+              </div>
+            </sc-if>
+
+            <div style="display:flex; flex-wrap:wrap; align-items:center; gap:var(--space-4) var(--space-6); border-top:1px solid var(--color-divider); padding-top:var(--space-6);">
+              <span style="display:flex; align-items:center; gap:var(--space-2); font-size:0.78rem; color:var(--color-neutral-400);"><i class="ph ph-credit-card" style="color:var(--color-accent); font-size:1rem;"></i>Card</span>
+              <span style="display:flex; align-items:center; gap:var(--space-2); font-size:0.78rem; color:var(--color-neutral-400);"><i class="ph ph-shield-check" style="color:var(--color-accent); font-size:1rem;"></i>Encrypted checkout</span>
+              <span style="display:flex; align-items:center; gap:var(--space-2); font-size:0.78rem; color:var(--color-neutral-400);"><i class="ph ph-receipt" style="color:var(--color-accent); font-size:1rem;"></i>Emailed confirmation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:{{ formPad }};">
+          <p style="margin:0 0 var(--space-4); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">What happens after payment</p>
+          <ul style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:var(--space-4);">
+            <li style="display:flex; gap:var(--space-4); font-size:0.9rem; line-height:1.55; color:var(--color-neutral-300);"><span style="flex:0 0 2.2rem; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent-300); padding-top:2px;">01</span><span>You get a payment confirmation and we receive the order instantly.</span></li>
+            <li style="display:flex; gap:var(--space-4); font-size:0.9rem; line-height:1.55; color:var(--color-neutral-300);"><span style="flex:0 0 2.2rem; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent-300); padding-top:2px;">02</span><span>You land on the intake form to share handles and goals.</span></li>
+            <li style="display:flex; gap:var(--space-4); font-size:0.9rem; line-height:1.55; color:var(--color-neutral-300);"><span style="flex:0 0 2.2rem; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent-300); padding-top:2px;">03</span><span>Your report is delivered within five business days.</span></li>
+          </ul>
+          <p style="margin:var(--space-6) 0 0; font-size:0.78rem; line-height:1.6; color:var(--color-neutral-500);">Refunds within 7 days if we haven't started tracing. Partnership purchases are scheduled after a fit call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;linkScorecard&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Payment form URLs&quot;},&quot;linkGrowthMap&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Payment form URLs&quot;},&quot;linkBlueprint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Payment form URLs&quot;},&quot;linkPartnership&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Payment form URLs&quot;}}">
+const PRODUCTS = [
+  { id: 'scorecard', sku: 'TIQ-SC-01', name: 'Creator Signal Scorecard', price: '$19.99', tagline: 'Know where you stand.' },
+  { id: 'growth-map', sku: 'TIQ-GM-02', name: 'Creator Growth Map', price: '$99', tagline: "Find the growth you're leaving behind." },
+  { id: 'blueprint', sku: 'TIQ-BP-03', name: 'Creator Growth Blueprint', price: '$499', tagline: 'Your complete creator growth strategy.' },
+  { id: 'partnership', sku: 'TIQ-PT-04', name: 'Creator Growth Partnership', price: '$1,197', tagline: 'Implement your strategy with expert guidance.' }
+];
+
+class Component extends DCLogic {
+  state = { w: 1440, selected: 'scorecard', demoPaid: false };
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+    let want = '';
+    try {
+      const q = new URLSearchParams(location.search);
+      want = q.get('plan') || (location.hash || '').replace('#', '');
+    } catch (e) {}
+    if (PRODUCTS.some(p => p.id === want)) this.setState({ selected: want });
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+  renderVals() {
+    const w = this.state.w, sel = this.state.selected;
+    const tablet = w <= 1024, mobile = w <= 768, small = w <= 480;
+    const current = PRODUCTS.find(p => p.id === sel) || PRODUCTS[0];
+
+    const FORMS = {
+      scorecard: 'https://pci.jotform.com/form/261696946708172',
+      'growth-map': 'https://pci.jotform.com/form/262137773178162',
+      blueprint: 'https://form.jotform.com/262138243599162',
+      partnership: 'https://pci.jotform.com/form/262137787684169'
+    };
+    const links = {
+      scorecard: (this.props.linkScorecard || FORMS.scorecard).trim(),
+      'growth-map': (this.props.linkGrowthMap || FORMS['growth-map']).trim(),
+      blueprint: (this.props.linkBlueprint || FORMS.blueprint).trim(),
+      partnership: (this.props.linkPartnership || FORMS.partnership).trim()
+    };
+    const paymentLink = links[sel] || '';
+    const hasPaymentLink = !!paymentLink;
+
+    return {
+      products: PRODUCTS.map(p => ({
+        name: p.name, price: p.price, tagline: p.tagline, sku: p.sku,
+        select: () => this.setState({ selected: p.id, demoPaid: false }),
+        style: [
+          'text-align:left', 'cursor:pointer', 'width:100%',
+          'padding:var(--space-6)', 'border-radius:var(--radius-md)',
+          'font-family:var(--font-body)',
+          'background:' + (p.id === sel ? 'linear-gradient(180deg, var(--color-accent-900) 0%, var(--color-surface) 70%)' : 'var(--color-surface)'),
+          'border:1px solid ' + (p.id === sel ? 'var(--color-accent-600)' : 'var(--color-divider)'),
+          'transition:border-color .18s ease'
+        ].join('; ')
+      })),
+      selectedId: current.id,
+      selectedName: current.name,
+      selectedPrice: current.price,
+      selectedTagline: current.tagline,
+      paymentLink: paymentLink ? (paymentLink + (paymentLink.indexOf('?') > -1 ? '&' : '?') + 'product=' + encodeURIComponent(current.name) + '&price=' + encodeURIComponent(current.price)) : '',
+      hasPaymentLink,
+      needsSetup: !hasPaymentLink,
+      demoPaid: this.state.demoPaid,
+      demoPay: () => this.setState({ demoPaid: true }),
+      navPad: mobile ? 'var(--space-4) var(--space-6)' : 'var(--space-6) 4rem',
+      headPad: mobile ? '3rem var(--space-6) var(--space-8)' : '4.5rem 4rem var(--space-8)',
+      bodyPad: mobile ? '0 var(--space-6) 3rem' : '0 4rem 5rem',
+      bodyCols: tablet ? '1fr' : 'minmax(280px, 22rem) 1fr',
+      bodyGap: tablet ? 'var(--space-8)' : '4rem',
+      formPad: mobile ? 'var(--space-6)' : 'var(--space-8)',
+      h1Size: small ? '2.4rem' : (mobile ? '2.9rem' : '3.6rem'),
+      leadSize: mobile ? '1rem' : '1.15rem',
+      navDisplay: tablet ? 'none' : 'flex'
+    };
+  }
+}
+</script>
+</body>
+</html>

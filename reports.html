@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="uploads/grok_image_1785190907713.jpg">
+<link rel="stylesheet" href="_ds/nocturne-c670020c-d868-4314-9b8c-8cad9d5cba97/styles.css">
+<script src="_ds/nocturne-c670020c-d868-4314-9b8c-8cad9d5cba97/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+  :root {
+    --color-accent: #5aa9fb;
+    --color-accent-100: #f0f7ff;
+    --color-accent-200: #dbeafe;
+    --color-accent-300: #bcd9fd;
+    --color-accent-400: #8ec1fc;
+    --color-accent-500: #5aa9fb;
+    --color-accent-600: #3f8ada;
+    --color-accent-700: #2e69a8;
+    --color-accent-800: #234b78;
+    --color-accent-900: #17304c;
+    --color-accent-2: #5aa9fb;
+    --color-accent-2-300: #bcd9fd;
+    --color-accent-2-400: #8ec1fc;
+    --color-accent-2-500: #5aa9fb;
+    --color-section: #143259;
+    --color-section-glow: #1d477c;
+    --color-section-ghost: #2f6aa8;
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; background:var(--color-bg); }
+  a { color:var(--color-accent); text-decoration:none; }
+  a:hover { color:var(--color-accent-400); }
+  :focus-visible { outline:2px solid var(--color-accent); outline-offset:2px; }
+</style>
+</helmet>
+<main style="background:var(--color-bg); color:var(--color-text); font-family:var(--font-body); min-height:100vh;">
+
+  <nav style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-8); padding:{{ navPad }}; border-bottom:1px solid var(--color-divider);">
+    <a href="index.html" aria-label="Trace IQ" style="display:block; width:132px; height:44px; overflow:hidden; position:relative; mask-image:radial-gradient(ellipse 62% 62% at 50% 50%, #000 55%, transparent 100%); -webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 50%, #000 55%, transparent 100%);">
+      <img src="uploads/grok_image_1785190907713.jpg" alt="Trace IQ" style="position:absolute; left:-50px; top:-93px; width:225px; height:225px; max-width:none; object-fit:cover; display:block;" /></a>
+    <div style="display:{{ navDisplay }}; align-items:center; gap:var(--space-8);">
+      <a href="index.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-neutral-400);" style-hover="color:var(--color-text)">Home</a>
+      <a href="reports.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-text);">Reports</a>
+      <a href="compare.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-neutral-400);" style-hover="color:var(--color-text)">Compare</a>
+    </div>
+    <a class="btn btn-primary" href="intake.html" style="text-transform:uppercase; letter-spacing:0.06em; font-size:0.8rem; white-space:nowrap; flex:0 0 auto;">Get My Report</a>
+  </nav>
+
+  <header style="padding:{{ headPad }}; max-width:1400px; margin:0 auto;">
+    <p style="margin:0 0 var(--space-3); font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-accent-300);">Report Details</p>
+    <h1 style="margin:0 0 var(--space-4); max-width:34rem; font-size:{{ h1Size }}; line-height:1.06; letter-spacing:-0.025em; color:var(--color-text);">What's inside each report.</h1>
+    <p style="margin:0; max-width:42rem; font-size:{{ leadSize }}; line-height:1.6; color:var(--color-neutral-300); text-wrap:pretty;">Every tier includes everything before it. Read the full deliverables below, then pick the depth that matches where you are.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:var(--space-3); margin-top:var(--space-8);">
+      <a class="btn btn-ghost" href="#scorecard" style="font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Scorecard</a>
+      <a class="btn btn-ghost" href="#growth-map" style="font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Growth Map</a>
+      <a class="btn btn-ghost" href="#blueprint" style="font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Blueprint</a>
+      <a class="btn btn-ghost" href="#partnership" style="font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Partnership</a>
+    </div>
+  </header>
+
+  <section id="scorecard" data-screen-label="Scorecard" style="padding:{{ rowPad }}; max-width:1400px; margin:0 auto; border-top:1px solid var(--color-divider);">
+    <div style="display:grid; grid-template-columns:{{ rowCols }}; gap:{{ rowGap }};">
+      <div>
+        <p style="margin:0 0 var(--space-3); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-neutral-400);">Tier 01</p>
+        <h2 style="margin:0 0 var(--space-3); font-size:{{ h2Size }}; line-height:1.12; letter-spacing:-0.02em; color:var(--color-text);">Creator Signal Scorecard</h2>
+        <p style="margin:0 0 var(--space-4); font-family:var(--font-heading); font-size:2.4rem; line-height:1; color:var(--color-accent);">$19.99</p>
+        <p style="margin:0 0 var(--space-6); font-size:1rem; color:var(--color-accent-300);">Know where you stand.</p>
+        <a class="btn btn-primary" href="intake.html?plan=scorecard" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Get My Scorecard</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:var(--space-6); max-width:46rem;">
+        <p style="margin:0; font-size:1rem; line-height:1.65; color:var(--color-neutral-200); text-wrap:pretty;">A fast, personalized snapshot of your creator brand. We'll evaluate the key signals that influence discoverability, engagement, and long-term growth—then show you exactly where to focus first.</p>
+        <div>
+          <p style="margin:0 0 var(--space-4); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Includes</p>
+          <ul style="margin:0; padding:0; list-style:none; display:grid; grid-template-columns:{{ listCols }}; gap:var(--space-3) var(--space-8);">
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Visibility Score</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Engagement Score</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Consistency Score</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Growth Readiness Score</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Overall Creator Signal Score</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Personalized Quick-Win Recommendations</span></li>
+          </ul>
+        </div>
+        <div style="border-top:1px solid var(--color-divider); padding-top:var(--space-6);">
+          <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Best For</p>
+          <p style="margin:0; font-size:0.95rem; line-height:1.55; color:var(--color-neutral-300);">Creators looking for an affordable starting point.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="growth-map" data-screen-label="Growth Map" style="padding:{{ rowPad }}; max-width:1400px; margin:0 auto; border-top:1px solid var(--color-divider);">
+    <div style="display:grid; grid-template-columns:{{ rowCols }}; gap:{{ rowGap }};">
+      <div>
+        <p style="margin:0 0 var(--space-3); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-neutral-400);">Tier 02</p>
+        <h2 style="margin:0 0 var(--space-3); font-size:{{ h2Size }}; line-height:1.12; letter-spacing:-0.02em; color:var(--color-text);">Creator Growth Map</h2>
+        <p style="margin:0 0 var(--space-4); font-family:var(--font-heading); font-size:2.4rem; line-height:1; color:var(--color-accent);">$99</p>
+        <p style="margin:0 0 var(--space-6); font-size:1rem; color:var(--color-accent-300);">Find the growth you're leaving behind.</p>
+        <a class="btn btn-primary" href="intake.html?plan=growth-map" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Build My Growth Map</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:var(--space-6); max-width:46rem;">
+        <p style="margin:0; font-size:1rem; line-height:1.65; color:var(--color-neutral-200); text-wrap:pretty;">Go beyond the numbers with a personalized Growth Map that uncovers hidden opportunities and provides a clear path toward faster audience growth.</p>
+        <div>
+          <p style="margin:0 0 var(--space-4); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Everything in the Scorecard plus</p>
+          <ul style="margin:0; padding:0; list-style:none; display:grid; grid-template-columns:{{ listCols }}; gap:var(--space-3) var(--space-8);">
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Missing Follower Signals</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Benchmark Against Similar Creators</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Platform Visibility Insights</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Missed Growth Opportunities</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Personalized Growth Priorities</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Actionable Next Steps</span></li>
+          </ul>
+        </div>
+        <div style="border-top:1px solid var(--color-divider); padding-top:var(--space-6);">
+          <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Best For</p>
+          <p style="margin:0; font-size:0.95rem; line-height:1.55; color:var(--color-neutral-300);">Creators ready to stop guessing and start growing strategically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="blueprint" data-screen-label="Blueprint" style="padding:{{ rowPad }}; max-width:1400px; margin:0 auto; border-top:1px solid var(--color-divider);">
+    <div style="display:grid; grid-template-columns:{{ rowCols }}; gap:{{ rowGap }};">
+      <div>
+        <div style="display:flex; align-items:center; gap:var(--space-4); margin-bottom:var(--space-3);">
+          <p style="margin:0; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-neutral-400);">Tier 03</p>
+          <span class="tag tag-accent">Most Complete Analysis</span>
+        </div>
+        <h2 style="margin:0 0 var(--space-3); font-size:{{ h2Size }}; line-height:1.12; letter-spacing:-0.02em; color:var(--color-text);">Creator Growth Blueprint</h2>
+        <p style="margin:0 0 var(--space-4); font-family:var(--font-heading); font-size:2.4rem; line-height:1; color:var(--color-accent);">$499</p>
+        <p style="margin:0 0 var(--space-6); font-size:1rem; color:var(--color-accent-300);">Your complete creator growth strategy.</p>
+        <a class="btn btn-primary" href="intake.html?plan=blueprint" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Get My Blueprint</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:var(--space-6); max-width:46rem;">
+        <p style="margin:0; font-size:1rem; line-height:1.65; color:var(--color-neutral-200); text-wrap:pretty;">Our most comprehensive analysis delivers a personalized roadmap to strengthen your brand, improve your content strategy, and maximize monetization opportunities.</p>
+        <div>
+          <p style="margin:0 0 var(--space-4); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Everything in the Growth Map plus</p>
+          <ul style="margin:0; padding:0; list-style:none; display:grid; grid-template-columns:{{ listCols }}; gap:var(--space-3) var(--space-8);">
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Full Audience Journey Analysis</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Content Funnel Leak Identification</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Advanced Creator Benchmark Analysis</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Monetization Readiness Assessment</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Prioritized 90-Day Growth Plan</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Human Expert Review</span></li>
+          </ul>
+        </div>
+        <div style="border-top:1px solid var(--color-divider); padding-top:var(--space-6);">
+          <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Best For</p>
+          <p style="margin:0; font-size:0.95rem; line-height:1.55; color:var(--color-neutral-300);">Creators serious about building a sustainable creator business.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="partnership" data-screen-label="Partnership" style="padding:{{ rowPad }}; max-width:1400px; margin:0 auto; border-top:1px solid var(--color-divider);">
+    <div style="display:grid; grid-template-columns:{{ rowCols }}; gap:{{ rowGap }};">
+      <div>
+        <p style="margin:0 0 var(--space-3); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-neutral-400);">Tier 04</p>
+        <h2 style="margin:0 0 var(--space-3); font-size:{{ h2Size }}; line-height:1.12; letter-spacing:-0.02em; color:var(--color-text);">Creator Growth Partnership</h2>
+        <p style="margin:0 0 var(--space-4); font-family:var(--font-heading); font-size:2.4rem; line-height:1; color:var(--color-accent);">$1,197</p>
+        <p style="margin:0 0 var(--space-6); font-size:1rem; color:var(--color-accent-300);">Implement your strategy with expert guidance.</p>
+        <a class="btn btn-primary" href="intake.html?plan=partnership" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Apply for Partnership</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:var(--space-6); max-width:46rem;">
+        <p style="margin:0; font-size:1rem; line-height:1.65; color:var(--color-neutral-200); text-wrap:pretty;">The Creator Growth Partnership combines our complete Blueprint with personalized coaching, accountability, and content feedback to help you execute with confidence.</p>
+        <div>
+          <p style="margin:0 0 var(--space-4); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Everything in the Blueprint plus</p>
+          <ul style="margin:0; padding:0; list-style:none; display:grid; grid-template-columns:{{ listCols }}; gap:var(--space-3) var(--space-8);">
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Four Private Growth Strategy Sessions</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Four Personalized Content Pulse Checks</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Personalized Loom Video Feedback</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Strategy Adjustments Throughout Your 90-Day Plan</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; color:var(--color-text);"><i class="ph ph-check" style="color:var(--color-accent); font-size:1rem; margin-top:3px;"></i><span>Accountability &amp; Implementation Support</span></li>
+          </ul>
+        </div>
+        <div class="card" style="padding:var(--space-8); border-color:var(--color-accent-700); background:linear-gradient(180deg, var(--color-accent-900) 0%, var(--color-surface) 60%);">
+          <p style="margin:0 0 var(--space-4); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-accent-300);">Together we'll help you</p>
+          <ul style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:var(--space-3);">
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; line-height:1.55; color:var(--color-neutral-200);"><i class="ph ph-arrow-up-right" style="color:var(--color-accent); font-size:0.95rem; margin-top:4px;"></i><span>Prioritize your highest-impact opportunities.</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; line-height:1.55; color:var(--color-neutral-200);"><i class="ph ph-arrow-up-right" style="color:var(--color-accent); font-size:0.95rem; margin-top:4px;"></i><span>Develop an execution plan tailored to your goals.</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; line-height:1.55; color:var(--color-neutral-200);"><i class="ph ph-arrow-up-right" style="color:var(--color-accent); font-size:0.95rem; margin-top:4px;"></i><span>Identify habits and behavioral patterns that contribute to procrastination, inconsistency, perfectionism, or self-sabotage.</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; line-height:1.55; color:var(--color-neutral-200);"><i class="ph ph-arrow-up-right" style="color:var(--color-accent); font-size:0.95rem; margin-top:4px;"></i><span>Build systems that improve consistency and long-term execution.</span></li>
+            <li style="display:flex; gap:var(--space-3); font-size:0.95rem; line-height:1.55; color:var(--color-neutral-200);"><i class="ph ph-arrow-up-right" style="color:var(--color-accent); font-size:0.95rem; margin-top:4px;"></i><span>Refine your strategy as your creator business evolves.</span></li>
+          </ul>
+        </div>
+        <div style="border-top:1px solid var(--color-divider); padding-top:var(--space-6);">
+          <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Best For</p>
+          <p style="margin:0; font-size:0.95rem; line-height:1.55; color:var(--color-neutral-300);">Creators who want a trusted partner to guide them through implementation and sustained growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Close" style="padding:{{ rowPad }}; max-width:1400px; margin:0 auto;">
+    <div style="border-radius:var(--radius-lg); background:linear-gradient(120deg, var(--color-section) 0%, var(--color-section-glow) 100%); padding:{{ ctaPad }}; display:flex; flex-direction:{{ ctaDirection }}; align-items:{{ ctaAlign }}; justify-content:space-between; gap:var(--space-8);">
+      <div style="max-width:38rem;">
+        <h2 style="margin:0 0 var(--space-4); font-size:{{ h2Size }}; line-height:1.12; letter-spacing:-0.02em; color:var(--color-accent-100);">Still deciding?</h2>
+        <p style="margin:0; font-size:1rem; line-height:1.6; color:var(--color-accent-200); text-wrap:pretty;">See all four tiers line by line in the feature comparison.</p>
+      </div>
+      <a class="btn btn-primary" href="compare.html" style="letter-spacing:0.06em; text-transform:uppercase; border-color:var(--color-accent-200); color:var(--color-accent-100); white-space:nowrap;">Compare Features</a>
+    </div>
+    <p style="margin:var(--space-8) 0 0; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-neutral-500);">Trace IQ · Social Intelligence</p>
+  </section>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { w: 1440 };
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+  renderVals() {
+    const w = this.state.w;
+    const tablet = w <= 1024, mobile = w <= 768, small = w <= 480;
+    return {
+      navPad: mobile ? 'var(--space-4) var(--space-6)' : 'var(--space-6) 4rem',
+      headPad: mobile ? '3rem var(--space-6)' : '4.5rem 4rem',
+      rowPad: mobile ? '3rem var(--space-6)' : '4rem 4rem',
+      rowCols: tablet ? '1fr' : 'minmax(280px, 22rem) 1fr',
+      rowGap: tablet ? 'var(--space-8)' : '4rem',
+      listCols: mobile ? '1fr' : 'repeat(2, minmax(0,1fr))',
+      h1Size: small ? '2.4rem' : (mobile ? '2.9rem' : '3.6rem'),
+      h2Size: mobile ? '1.7rem' : '2.2rem',
+      leadSize: mobile ? '1rem' : '1.15rem',
+      navDisplay: tablet ? 'none' : 'flex',
+      ctaDirection: mobile ? 'column' : 'row',
+      ctaAlign: mobile ? 'flex-start' : 'center',
+      ctaPad: mobile ? 'var(--space-8)' : '3rem'
+    };
+  }
+}
+</script>
+</body>
+</html>

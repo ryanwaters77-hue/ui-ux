@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TraceIQ — Growth Signal Check</title>
+<style>
+  /* ============================================================
+     TraceIQ free tool — self-contained. No dependencies.
+     Drop this whole block into your free-tool section, or embed
+     the file with <iframe src="traceiq-growth-tool.html">.
+     Everything is namespaced under .tiq- to avoid collisions.
+     ============================================================ */
+  .tiq-root{
+    --void:#080D1A;
+    --deep:#0F172C;
+    --panel:#141F3A;
+    --line:rgba(140,168,224,.18);
+    --gold:#E4C275;
+    --blue:#5B8CFF;
+    --green:#43D6A0;
+    --amber:#F2A93B;
+    --red:#F2695C;
+    --text:#E8EEFB;
+    --muted:#8397BC;
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:'JetBrains Mono','SF Mono',Consolas,'Courier New',monospace;
+
+    background:
+      radial-gradient(120% 80% at 50% -10%, rgba(91,140,255,.14), transparent 60%),
+      radial-gradient(90% 60% at 110% 100%, rgba(228,194,117,.08), transparent 65%),
+      var(--void);
+    color:var(--text);
+    font-family:var(--sans);
+    padding:clamp(28px,6vw,64px) clamp(18px,5vw,40px);
+    box-sizing:border-box;
+    -webkit-font-smoothing:antialiased;
+  }
+  .tiq-root *,.tiq-root *::before,.tiq-root *::after{box-sizing:border-box}
+  .tiq-wrap{max-width:640px;margin:0 auto}
+
+  .tiq-eyebrow{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--gold);margin:0 0 22px;
+  }
+  .tiq-eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);opacity:.7}
+
+  .tiq-h1{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(30px,7.5vw,46px);line-height:1.12;
+    text-align:center;margin:0 0 18px;letter-spacing:-.01em;
+  }
+  .tiq-sub{
+    text-align:center;color:var(--muted);font-size:16px;line-height:1.6;
+    margin:0 auto 38px;max-width:30em;
+  }
+
+  .tiq-card{
+    background:linear-gradient(180deg,var(--deep),var(--void));
+    border:1px solid var(--line);border-radius:16px;
+    padding:clamp(20px,5vw,32px);
+  }
+
+  .tiq-label{
+    display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 9px;
+  }
+  .tiq-field{margin-bottom:22px}
+  .tiq-input,.tiq-select{
+    width:100%;background:var(--panel);color:var(--text);
+    border:1px solid var(--line);border-radius:10px;
+    padding:15px 16px;font-size:17px;font-family:var(--sans);
+    transition:border-color .18s,box-shadow .18s;
+  }
+  .tiq-input::placeholder{color:#5D6E90}
+  .tiq-input:focus,.tiq-select:focus,.tiq-btn:focus-visible{
+    outline:none;border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(91,140,255,.22);
+  }
+  .tiq-btn:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+  .tiq-select{
+    appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),
+                     linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+    background-position:calc(100% - 20px) 24px,calc(100% - 14px) 24px;
+    background-size:6px 6px,6px 6px;background-repeat:no-repeat;
+  }
+  .tiq-select option{background:var(--deep);color:var(--text)}
+
+  .tiq-btn{
+    width:100%;border:0;border-radius:999px;cursor:pointer;
+    background:linear-gradient(135deg,#F0D493,var(--gold));
+    color:#141005;font-weight:700;font-size:16px;letter-spacing:.01em;
+    padding:17px 20px;margin-top:6px;
+    transition:transform .15s,box-shadow .15s,filter .15s;
+  }
+  .tiq-btn:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(228,194,117,.24)}
+  .tiq-btn:active{transform:translateY(0)}
+
+  .tiq-error{
+    color:var(--red);font-size:13.5px;margin:14px 0 0;min-height:1em;
+  }
+  .tiq-note{
+    color:var(--muted);font-size:12.5px;text-align:center;margin:16px 0 0;line-height:1.6;
+  }
+
+  /* ---------- results ---------- */
+  .tiq-results{display:none;margin-top:26px}
+  .tiq-results.is-open{display:block;animation:tiq-rise .45s ease both}
+  @keyframes tiq-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .tiq-verdict{
+    display:flex;align-items:center;gap:14px;
+    padding-bottom:20px;margin-bottom:22px;border-bottom:1px solid var(--line);
+  }
+  .tiq-dot{width:11px;height:11px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 0 4px rgba(255,255,255,.05)}
+  .tiq-verdict h3{
+    font-family:var(--serif);font-weight:400;font-size:25px;margin:0 0 3px;
+  }
+  .tiq-verdict p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+
+  .tiq-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border-radius:12px;overflow:hidden;margin-bottom:22px}
+  .tiq-metric{background:var(--deep);padding:18px 16px}
+  .tiq-metric dt{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 8px;
+  }
+  .tiq-metric dd{margin:0;font-family:var(--serif);font-size:27px;line-height:1}
+  .tiq-metric small{display:block;margin-top:7px;font-family:var(--sans);font-size:12px;color:var(--muted)}
+
+  .tiq-bar{margin-bottom:24px}
+  .tiq-bar-head{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .tiq-track{height:8px;border-radius:999px;background:var(--panel);position:relative;overflow:hidden}
+  .tiq-fill{height:100%;border-radius:999px;width:0;transition:width .9s cubic-bezier(.22,.8,.3,1)}
+  .tiq-mark{position:absolute;top:-4px;width:2px;height:16px;background:var(--gold);opacity:.85}
+  .tiq-bar-foot{margin-top:9px;font-size:12.5px;color:var(--muted)}
+
+  .tiq-findings{list-style:none;padding:0;margin:0 0 24px}
+  .tiq-findings li{
+    display:flex;gap:12px;padding:13px 0;border-top:1px solid var(--line);
+    font-size:14.5px;line-height:1.55;color:#C9D6EE;
+  }
+  .tiq-findings li span{
+    font-family:var(--mono);font-size:11px;color:var(--gold);
+    padding-top:3px;flex:0 0 auto;letter-spacing:.08em;
+  }
+
+  .tiq-gap{
+    background:linear-gradient(135deg,rgba(91,140,255,.13),rgba(228,194,117,.07));
+    border:1px solid var(--line);border-radius:13px;padding:22px;margin-bottom:22px;
+  }
+  .tiq-gap h4{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 12px}
+  .tiq-gap-num{font-family:var(--serif);font-size:34px;line-height:1.1;margin:0 0 8px}
+  .tiq-gap p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.6}
+
+  .tiq-cta{
+    display:block;text-align:center;text-decoration:none;
+    border:1px solid var(--gold);color:var(--gold);border-radius:999px;
+    padding:15px 20px;font-weight:600;font-size:15px;
+    transition:background .18s,color .18s;
+  }
+  .tiq-cta:hover{background:var(--gold);color:#141005}
+
+  .tiq-reset{
+    display:block;width:100%;margin-top:14px;background:none;border:0;
+    color:var(--muted);font-size:13px;cursor:pointer;font-family:var(--sans);
+    text-decoration:underline;text-underline-offset:3px;
+  }
+  .tiq-reset:hover{color:var(--text)}
+
+  .tiq-fine{margin-top:20px;font-size:11.5px;color:#67799B;line-height:1.65}
+
+  @media (max-width:420px){
+    .tiq-metrics{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .tiq-results.is-open{animation:none}
+    .tiq-fill{transition:none}
+    .tiq-btn:hover{transform:none}
+  }
+</style>
+</head>
+<body style="margin:0;background:#080D1A">
+
+<div class="tiq-root">
+  <div class="tiq-wrap">
+
+    <p class="tiq-eyebrow">Free tool</p>
+    <h1 class="tiq-h1">How much growth are you leaving on the table?</h1>
+    <p class="tiq-sub">Enter three numbers from your profile. We'll estimate your engagement health and what stalled growth may be costing you.</p>
+
+    <div class="tiq-card">
+      <div id="tiq-form">
+        <div class="tiq-field">
+          <label class="tiq-label" for="tiq-followers">Current followers</label>
+          <input class="tiq-input" id="tiq-followers" type="number" inputmode="numeric" min="1" placeholder="e.g. 8500">
+        </div>
+
+        <div class="tiq-field">
+          <label class="tiq-label" for="tiq-eng">Average likes + comments per post</label>
+          <input class="tiq-input" id="tiq-eng" type="number" inputmode="numeric" min="0" placeholder="e.g. 240">
+        </div>
+
+        <div class="tiq-field">
+          <label class="tiq-label" for="tiq-cadence">Posts per week</label>
+          <select class="tiq-select" id="tiq-cadence">
+            <option value="">Choose…</option>
+            <option value="0.5">Less than 1</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="10">8 or more</option>
+          </select>
+        </div>
+
+        <button class="tiq-btn" id="tiq-go" type="button">Trace my signal</button>
+        <p class="tiq-error" id="tiq-error" role="alert"></p>
+        <p class="tiq-note">Nothing is stored. The estimate runs in your browser.</p>
+      </div>
+
+      <div class="tiq-results" id="tiq-results" aria-live="polite">
+        <div class="tiq-verdict">
+          <div class="tiq-dot" id="tiq-dot"></div>
+          <div>
+            <h3 id="tiq-grade"></h3>
+            <p id="tiq-gradesub"></p>
+          </div>
+        </div>
+
+        <dl class="tiq-metrics">
+          <div class="tiq-metric">
+            <dt>Engagement rate</dt>
+            <dd id="tiq-er"></dd>
+            <small id="tiq-ersub"></small>
+          </div>
+          <div class="tiq-metric">
+            <dt>Benchmark for your size</dt>
+            <dd id="tiq-bench"></dd>
+            <small id="tiq-benchsub"></small>
+          </div>
+          <div class="tiq-metric">
+            <dt>Monthly engagements</dt>
+            <dd id="tiq-monthly"></dd>
+            <small id="tiq-monthlysub"></small>
+          </div>
+          <div class="tiq-metric">
+            <dt>Reachable at benchmark</dt>
+            <dd id="tiq-potential"></dd>
+            <small id="tiq-potentialsub"></small>
+          </div>
+        </dl>
+
+        <div class="tiq-bar">
+          <div class="tiq-bar-head"><span>Where you sit</span><span id="tiq-pct"></span></div>
+          <div class="tiq-track"><div class="tiq-fill" id="tiq-fill"></div><div class="tiq-mark" id="tiq-mark"></div></div>
+          <p class="tiq-bar-foot" id="tiq-barfoot"></p>
+        </div>
+
+        <ul class="tiq-findings" id="tiq-findings"></ul>
+
+        <div class="tiq-gap">
+          <h4>Left on the table</h4>
+          <p class="tiq-gap-num" id="tiq-gapnum"></p>
+          <p id="tiq-gaptext"></p>
+        </div>
+
+        <a class="tiq-cta" id="tiq-cta" href="#contact">Get the full Signal Map →</a>
+        <button class="tiq-reset" id="tiq-reset" type="button">Run different numbers</button>
+
+        <p class="tiq-fine">Estimates use public engagement-rate benchmarks by follower tier and a $0.05 value per engagement, a conservative mid-market rate for sponsored content. Treat the output as a directional read, not a forecast.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+
+  // Benchmark engagement rate (%) by follower tier, plus a healthy cadence floor.
+  function benchmarkFor(followers){
+    if (followers < 5000)    return {er:5.0, tier:"under 5K"};
+    if (followers < 20000)   return {er:3.5, tier:"5K–20K"};
+    if (followers < 100000)  return {er:2.4, tier:"20K–100K"};
+    if (followers < 500000)  return {er:1.7, tier:"100K–500K"};
+    return {er:1.2, tier:"500K+"};
+  }
+  var TARGET_CADENCE = 4;      // posts/week where cadence stops being the bottleneck
+  var VALUE_PER_ENGAGEMENT = 0.05;
+  var FOLLOWER_CONVERSION = 0.02; // share of missed engagements that would have become followers
+
+  function fmt(n){
+    n = Math.round(n);
+    return n.toLocaleString('en-US');
+  }
+  function money(n){
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+
+  function run(){
+    var followers = parseFloat($('tiq-followers').value);
+    var eng       = parseFloat($('tiq-eng').value);
+    var cadence   = parseFloat($('tiq-cadence').value);
+    var err = $('tiq-error');
+
+    if (!followers || followers < 1)      { err.textContent = 'Enter your follower count to continue.'; return; }
+    if (isNaN(eng) || eng < 0)            { err.textContent = 'Enter your average likes + comments per post.'; return; }
+    if (!cadence)                         { err.textContent = 'Pick how often you post each week.'; return; }
+    if (eng > followers * 2)              { err.textContent = 'That engagement number is higher than expected for your follower count. Double-check it.'; return; }
+    err.textContent = '';
+
+    var bm = benchmarkFor(followers);
+    var er = (eng / followers) * 100;
+    var ratio = er / bm.er;
+
+    var postsMonth   = cadence * 4.33;
+    var current      = eng * postsMonth;
+    var targetCad    = Math.max(cadence, TARGET_CADENCE);
+    var potential    = (bm.er/100) * followers * targetCad * 4.33;
+    var gap          = Math.max(0, potential - current);
+
+    var missedFollowers = gap * FOLLOWER_CONVERSION;
+    var missedValue     = gap * VALUE_PER_ENGAGEMENT;
+
+    // ---- verdict ----
+    var grade, sub, color;
+    if (ratio >= 1.15)      { grade = 'Compounding';  color = 'var(--green)'; sub = 'Your audience is responding above the benchmark for your size. The job now is protecting that signal as you scale.'; }
+    else if (ratio >= 0.85) { grade = 'Holding';      color = 'var(--blue)';  sub = 'You are roughly at benchmark. Healthy, but nothing here is pulling you upward on its own.'; }
+    else if (ratio >= 0.55) { grade = 'Slipping';     color = 'var(--amber)'; sub = 'Engagement is trailing accounts your size. Reach is likely being throttled before your posts finish distributing.'; }
+    else                    { grade = 'Stalled';      color = 'var(--red)';   sub = 'Engagement is well under benchmark. Growth at this rate depends on luck rather than a repeatable signal.'; }
+
+    $('tiq-grade').textContent = grade;
+    $('tiq-gradesub').textContent = sub;
+    $('tiq-dot').style.background = color;
+
+    // ---- metrics ----
+    $('tiq-er').textContent = er.toFixed(2) + '%';
+    $('tiq-er').style.color = color;
+    $('tiq-ersub').textContent = fmt(eng) + ' interactions per post';
+
+    $('tiq-bench').textContent = bm.er.toFixed(1) + '%';
+    $('tiq-benchsub').textContent = 'Typical for ' + bm.tier + ' accounts';
+
+    $('tiq-monthly').textContent = fmt(current);
+    $('tiq-monthlysub').textContent = 'At ' + (cadence === 0.5 ? 'under 1' : cadence === 10 ? '8+' : cadence) + ' posts per week';
+
+    $('tiq-potential').textContent = fmt(potential);
+    $('tiq-potentialsub').textContent = 'At benchmark and ' + targetCad + ' posts per week';
+
+    // ---- position bar ----
+    var pct = Math.min(ratio, 1.6) / 1.6 * 100;
+    $('tiq-pct').textContent = Math.round(ratio * 100) + '% of benchmark';
+    $('tiq-fill').style.background = 'linear-gradient(90deg,' + color + ',' + color + ')';
+    $('tiq-mark').style.left = 'calc(' + (1/1.6*100) + '% - 1px)';
+    $('tiq-barfoot').textContent = 'The gold line is the benchmark for ' + bm.tier + ' accounts.';
+    setTimeout(function(){ $('tiq-fill').style.width = Math.max(pct, 2) + '%'; }, 60);
+
+    // ---- findings ----
+    var f = [];
+    if (ratio < 0.85){
+      f.push(['Signal', 'Your posts convert ' + Math.round((1-ratio)*100) + '% fewer followers into interactions than the benchmark. That is a content-match problem before it is a reach problem.']);
+    } else {
+      f.push(['Signal', 'Your interaction rate is doing the heavy lifting. Guard the formats that earn it before chasing new ones.']);
+    }
+    if (cadence < TARGET_CADENCE){
+      f.push(['Cadence', 'At ' + (cadence === 0.5 ? 'under 1 post' : cadence + ' posts') + ' a week you are giving the algorithm ' + fmt(postsMonth) + ' chances a month. Moving to ' + TARGET_CADENCE + ' adds ' + fmt((TARGET_CADENCE-cadence)*4.33) + ' more without changing anything else.']);
+    } else if (cadence >= 7 && ratio < 0.85){
+      f.push(['Cadence', 'You are posting ' + fmt(postsMonth) + ' times a month and engagement still trails benchmark. Volume is not the constraint — the concepts are.']);
+    } else {
+      f.push(['Cadence', 'Your posting rhythm is already past the point where frequency limits growth.']);
+    }
+    f.push(['Ceiling', 'At benchmark performance your account would generate roughly ' + fmt(potential) + ' interactions a month — about ' + (current > 0 ? (potential/current).toFixed(1) + '×' : '—') + ' your current output.']);
+
+    var ul = $('tiq-findings'); ul.innerHTML = '';
+    f.forEach(function(row){
+      var li = document.createElement('li');
+      var s = document.createElement('span'); s.textContent = row[0];
+      var t = document.createElement('div'); t.textContent = row[1];
+      li.appendChild(s); li.appendChild(t); ul.appendChild(li);
+    });
+
+    // ---- gap ----
+    if (gap <= 0){
+      $('tiq-gapnum').textContent = 'Nothing measurable';
+      $('tiq-gaptext').textContent = 'You are already performing at or above the benchmark for your size and cadence. The opportunity from here is in monetization and format expansion, not in fixing engagement.';
+    } else {
+      $('tiq-gapnum').textContent = fmt(gap) + ' interactions a month';
+      $('tiq-gaptext').textContent = 'That gap works out to roughly ' + fmt(missedFollowers) + ' followers a month you are not picking up, and about ' + money(missedValue) + ' a month — ' + money(missedValue*12) + ' a year — in sponsored-content value you cannot currently charge for.';
+    }
+
+    $('tiq-form').style.display = 'none';
+    $('tiq-results').classList.add('is-open');
+    $('tiq-results').scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  $('tiq-go').addEventListener('click', run);
+  ['tiq-followers','tiq-eng'].forEach(function(id){
+    $(id).addEventListener('keydown', function(e){ if(e.key === 'Enter') run(); });
+  });
+  $('tiq-reset').addEventListener('click', function(){
+    $('tiq-results').classList.remove('is-open');
+    $('tiq-fill').style.width = '0';
+    $('tiq-form').style.display = '';
+    $('tiq-followers').focus();
+  });
+})();
+</script>
+
+</body>
+</html>

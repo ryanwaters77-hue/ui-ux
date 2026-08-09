@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="uploads/grok_image_1785190907713.jpg">
+<link rel="stylesheet" href="_ds/nocturne-c670020c-d868-4314-9b8c-8cad9d5cba97/styles.css">
+<script src="_ds/nocturne-c670020c-d868-4314-9b8c-8cad9d5cba97/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+  :root {
+    --color-accent: #5aa9fb;
+    --color-accent-100: #f0f7ff;
+    --color-accent-200: #dbeafe;
+    --color-accent-300: #bcd9fd;
+    --color-accent-400: #8ec1fc;
+    --color-accent-500: #5aa9fb;
+    --color-accent-600: #3f8ada;
+    --color-accent-700: #2e69a8;
+    --color-accent-800: #234b78;
+    --color-accent-900: #17304c;
+    --color-accent-2: #5aa9fb;
+    --color-accent-2-300: #bcd9fd;
+    --color-accent-2-400: #8ec1fc;
+    --color-accent-2-500: #5aa9fb;
+    --color-section: #143259;
+    --color-section-glow: #1d477c;
+    --color-section-ghost: #2f6aa8;
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; background:var(--color-bg); }
+  a { color:var(--color-accent); text-decoration:none; }
+  a:hover { color:var(--color-accent-400); }
+  :focus-visible { outline:2px solid var(--color-accent); outline-offset:2px; }
+</style>
+</helmet>
+<main style="position:relative; background:var(--color-bg); color:var(--color-text); font-family:var(--font-body); min-height:100vh;">
+
+  <div style="position:fixed; inset:0; z-index:0; pointer-events:none;">
+    <video ref="{{ bgVideoRef }}" muted="{{ true }}" playsInline="{{ true }}" src="uploads/grok_video_2026-07-15-22-08-46 (1)-4b5f0fb5.mp4" style="width:100%; height:100%; object-fit:cover; opacity:0.95; filter:brightness(1.45) saturate(1.12);"></video>
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(22,24,38,0.5) 0%, rgba(22,24,38,0.68) 45%, rgba(22,24,38,0.78) 100%);"></div>
+  </div>
+
+  <div style="position:relative; z-index:1;">
+
+  <nav style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-8); padding:{{ navPad }}; border-bottom:1px solid var(--color-divider);">
+    <a href="index.html" aria-label="Trace IQ" style="display:block; width:132px; height:44px; overflow:hidden; position:relative; mask-image:radial-gradient(ellipse 62% 62% at 50% 50%, #000 55%, transparent 100%); -webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 50%, #000 55%, transparent 100%);">
+      <img src="uploads/grok_image_1785190907713.jpg" alt="Trace IQ" style="position:absolute; left:-50px; top:-93px; width:225px; height:225px; max-width:none; object-fit:cover; display:block;" /></a>
+    <div style="display:{{ navDisplay }}; align-items:center; gap:var(--space-8);">
+      <a href="index.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-neutral-400);" style-hover="color:var(--color-text)">Home</a>
+      <a href="reports.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-neutral-400);" style-hover="color:var(--color-text)">Reports</a>
+      <a href="compare.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-text);">Compare</a>
+    </div>
+    <a class="btn btn-primary" href="intake.html" style="text-transform:uppercase; letter-spacing:0.06em; font-size:0.8rem; white-space:nowrap; flex:0 0 auto;">Get My Report</a>
+  </nav>
+
+  <header style="padding:{{ headPad }}; max-width:1400px; margin:0 auto;">
+    <p style="margin:0 0 var(--space-3); font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-accent-300);">Feature Comparison</p>
+    <h1 style="margin:0 0 var(--space-4); max-width:32rem; font-size:{{ h1Size }}; line-height:1.06; letter-spacing:-0.025em; color:var(--color-text);">Everything, side by side.</h1>
+    <p style="margin:0; max-width:42rem; font-size:{{ leadSize }}; line-height:1.6; color:var(--color-neutral-300); text-wrap:pretty;">Each tier carries forward everything from the tier before it. Use this to see exactly where the added depth begins.</p>
+  </header>
+
+  <section data-screen-label="Comparison" style="padding:{{ tablePad }}; max-width:1400px; margin:0 auto;">
+    <div style="overflow-x:auto; border:1px solid var(--color-divider); border-radius:var(--radius-lg); background:var(--color-surface);">
+      <table class="table" style="width:100%; min-width:760px; border-collapse:collapse;">
+        <thead>
+          <tr>
+            <th style="text-align:left; white-space:nowrap;">Feature</th>
+            <th style="text-align:center; white-space:nowrap;">Scorecard<br /><span style="font-weight:400; font-size:0.72rem; color:var(--color-neutral-400);">$19.99</span></th>
+            <th style="text-align:center; white-space:nowrap;">Growth Map<br /><span style="font-weight:400; font-size:0.72rem; color:var(--color-neutral-400);">$99</span></th>
+            <th style="text-align:center; white-space:nowrap;">Blueprint<br /><span style="font-weight:400; font-size:0.72rem; color:var(--color-neutral-400);">$499</span></th>
+            <th style="text-align:center; white-space:nowrap;">Partnership<br /><span style="font-weight:400; font-size:0.72rem; color:var(--color-neutral-400);">$1,197</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <sc-for list="{{ rows }}" as="row" hint-placeholder-count="10">
+            <tr>
+              <td style="text-align:left; color:var(--color-text);">{{ row.name }}</td>
+              <td style="text-align:center; color:{{ row.c1color }};">{{ row.c1 }}</td>
+              <td style="text-align:center; color:{{ row.c2color }};">{{ row.c2 }}</td>
+              <td style="text-align:center; color:{{ row.c3color }};">{{ row.c3 }}</td>
+              <td style="text-align:center; color:{{ row.c4color }};">{{ row.c4 }}</td>
+            </tr>
+          </sc-for>
+          <tr>
+            <td style="text-align:left; color:var(--color-neutral-400); font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase;">Get started</td>
+            <td style="text-align:center;"><a class="btn btn-ghost" href="intake.html?plan=scorecard" style="font-size:0.72rem; letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Scorecard</a></td>
+            <td style="text-align:center;"><a class="btn btn-ghost" href="intake.html?plan=growth-map" style="font-size:0.72rem; letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Growth Map</a></td>
+            <td style="text-align:center;"><a class="btn btn-primary" href="intake.html?plan=blueprint" style="font-size:0.72rem; letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Blueprint</a></td>
+            <td style="text-align:center;"><a class="btn btn-ghost" href="intake.html?plan=partnership" style="font-size:0.72rem; letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Partnership</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin:var(--space-6) 0 0; font-size:0.85rem; color:var(--color-neutral-400);">Read the full deliverables on the <a href="reports.html">report details page</a>.</p>
+  </section>
+  </div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+const FEATURES = [
+  ['Creator Signal Score', 1, 1, 1, 1],
+  ['Visibility Analysis', 1, 1, 1, 1],
+  ['Engagement Analysis', 1, 1, 1, 1],
+  ['Growth Readiness', 1, 1, 1, 1],
+  ['Quick Wins', 1, 1, 1, 1],
+  ['Missing Follower Signals', 0, 1, 1, 1],
+  ['Benchmark Analysis', 0, 1, 1, 1],
+  ['Growth Opportunities', 0, 1, 1, 1],
+  ['Audience Journey Analysis', 0, 0, 1, 1],
+  ['Content Funnel Analysis', 0, 0, 1, 1],
+  ['Monetization Assessment', 0, 0, 1, 1],
+  ['90-Day Growth Plan', 0, 0, 1, 1],
+  ['Human Expert Review', 0, 0, 1, 1],
+  ['4 Growth Strategy Sessions', 0, 0, 0, 1],
+  ['4 Content Pulse Checks', 0, 0, 0, 1],
+  ['Loom Video Feedback', 0, 0, 0, 1],
+  ['Accountability Support', 0, 0, 0, 1]
+];
+
+class Component extends DCLogic {
+  state = { w: 1440 };
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+  renderVals() {
+    const w = this.state.w;
+    const tablet = w <= 1024, mobile = w <= 768, small = w <= 480;
+    const mark = (v) => v ? '\u2713' : '\u2014';
+    const col = (v) => v ? 'var(--color-accent-400)' : 'var(--color-neutral-600)';
+    return {
+      rows: FEATURES.map(([name, a, b, c, d]) => ({
+        name,
+        c1: mark(a), c2: mark(b), c3: mark(c), c4: mark(d),
+        c1color: col(a), c2color: col(b), c3color: col(c), c4color: col(d)
+      })),
+      bgVideoRef: (el) => {
+        if (!el || this.bg === el) return;
+        this.bg = el;
+        el.loop = false;
+        el.muted = true;
+        el.volume = 0;
+        const p = el.play();
+        if (p && p.catch) p.catch(() => {});
+      },
+      navPad: mobile ? 'var(--space-4) var(--space-6)' : 'var(--space-6) 4rem',
+      headPad: mobile ? '3rem var(--space-6)' : '4.5rem 4rem',
+      tablePad: mobile ? '0 var(--space-6) 3rem' : '0 4rem 5rem',
+      h1Size: small ? '2.4rem' : (mobile ? '2.9rem' : '3.6rem'),
+      leadSize: mobile ? '1rem' : '1.15rem',
+      navDisplay: tablet ? 'none' : 'flex'
+    };
+  }
+}
+</script>
+</body>
+</html>

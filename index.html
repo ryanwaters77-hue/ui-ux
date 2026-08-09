@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="uploads/grok_image_1785190907713.jpg">
+<link rel="stylesheet" href="_ds/nocturne-c670020c-d868-4314-9b8c-8cad9d5cba97/styles.css">
+<script src="_ds/nocturne-c670020c-d868-4314-9b8c-8cad9d5cba97/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+  /* Accent retinted to the logo's blue, same ramp lightness steps */
+  :root {
+    --color-accent: #5aa9fb;
+    --color-accent-100: #f0f7ff;
+    --color-accent-200: #dbeafe;
+    --color-accent-300: #bcd9fd;
+    --color-accent-400: #8ec1fc;
+    --color-accent-500: #5aa9fb;
+    --color-accent-600: #3f8ada;
+    --color-accent-700: #2e69a8;
+    --color-accent-800: #234b78;
+    --color-accent-900: #17304c;
+    --color-accent-2: #5aa9fb;
+    --color-accent-2-300: #bcd9fd;
+    --color-accent-2-400: #8ec1fc;
+    --color-accent-2-500: #5aa9fb;
+    --color-section: #143259;
+    --color-section-glow: #1d477c;
+    --color-section-ghost: #2f6aa8;
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; background:var(--color-bg); }
+  a { color:var(--color-accent); text-decoration:none; }
+  a:hover { color:var(--color-accent-400); }
+  :focus-visible { outline:2px solid var(--color-accent); outline-offset:2px; }
+  @keyframes tq-up { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+</style>
+</helmet>
+<main style="background:var(--color-bg); color:var(--color-text); font-family:var(--font-body); min-height:100vh;">
+
+  <section data-screen-label="Hero" style="position:relative; display:flex; flex-direction:column; min-height:100vh; padding:{{ pagePad }}; overflow:hidden;">
+    <div style="position:absolute; inset:0; z-index:0; pointer-events:none;">
+      <video ref="{{ videoRef }}" playsInline="{{ true }}" src="https://strvid.nyc3.cdn.digitaloceanspaces.com/cloudinary/portfolio_hero_bg_zuhahj.webm" style="width:100%; height:100%; object-fit:cover; opacity:0.95; filter:brightness(1.5) saturate(1.12);"></video>
+      <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(22,24,38,0.82) 0%, rgba(22,24,38,0.22) 45%, rgba(22,24,38,0.62) 100%);"></div>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(22,24,38,0.3) 0%, rgba(22,24,38,0) 35%, var(--color-bg) 100%);"></div>
+    </div>
+
+    <nav style="position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:var(--space-8); padding-bottom:var(--space-8);">
+      <a href="#" aria-label="Trace IQ" style="display:block; width:132px; height:44px; overflow:hidden; position:relative; mask-image:radial-gradient(ellipse 62% 62% at 50% 50%, #000 55%, transparent 100%); -webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 50%, #000 55%, transparent 100%);">
+        <img src="uploads/grok_image_1785190907713.jpg" alt="Trace IQ" style="position:absolute; left:-50px; top:-93px; width:225px; height:225px; max-width:none; object-fit:cover; display:block;" /></a>
+      <div style="display:{{ navDisplay }}; align-items:center; gap:var(--space-8);">
+        <a href="#pricing" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-text);">Pricing</a>
+        <a href="compare.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-neutral-400);" style-hover="color:var(--color-text)">Compare</a>
+        <a href="#how-it-works" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-neutral-400);" style-hover="color:var(--color-text)">How It Works</a>
+      </div>
+      <div style="display:flex; align-items:center; gap:var(--space-4);">
+        <a class="btn btn-primary" href="intake.html" style="text-transform:uppercase; letter-spacing:0.06em; font-size:0.8rem; white-space:nowrap; flex:0 0 auto;">Get My Report</a>
+        <a class="btn btn-ghost btn-icon" href="#pricing" aria-label="Jump to pricing" style="display:{{ toggleDisplay }}; align-items:center; justify-content:center;"><i class="ph ph-list" style="font-size:1.25rem;"></i></a>
+      </div>
+    </nav>
+
+    <audio ref="{{ audioRef }}" loop="{{ true }}" preload="auto" src="uploads/Untitled (Remastered).mp3"></audio>
+
+    <div style="position:fixed; right:var(--space-6); bottom:var(--space-6); z-index:40; display:flex; align-items:center; gap:var(--space-2); padding:var(--space-2); border:1px solid var(--color-divider); border-radius:999px; background:color-mix(in srgb, var(--color-surface) 88%, transparent); backdrop-filter:blur(10px); box-shadow:var(--shadow-md);">
+      <button type="button" class="btn btn-ghost btn-icon" onClick="{{ togglePlay }}" aria-label="{{ playLabel }}" title="{{ playLabel }}" style="border-radius:999px;"><i class="{{ playIcon }}" style="font-size:1.1rem;"></i></button>
+      <button type="button" class="btn btn-ghost btn-icon" onClick="{{ toggleMute }}" aria-label="{{ muteLabel }}" title="{{ muteLabel }}" style="border-radius:999px;"><i class="{{ muteIcon }}" style="font-size:1.1rem;"></i></button>
+      <span style="padding-right:var(--space-3); font-size:0.66rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400); white-space:nowrap;">{{ audioLabel }}</span>
+    </div>
+
+    <div style="position:relative; z-index:2; flex:1; display:flex; flex-direction:column; justify-content:center; padding:var(--space-8) 0;">
+      <div style="max-width:860px;">
+        <p style="margin:0 0 var(--space-4); font-size:0.95rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-accent-300); animation:tq-up .7s cubic-bezier(.16,1,.3,1) .1s both;">Trace IQ · Social Intelligence</p>
+        <h1 style="margin:0 0 var(--space-6); font-size:{{ h1Size }}; line-height:1.04; letter-spacing:-0.03em; color:var(--color-text); animation:tq-up .7s cubic-bezier(.16,1,.3,1) .2s both;">Stop Guessing.<br />Start Growing.</h1>
+        <p style="margin:0 0 var(--space-8); max-width:44rem; font-size:{{ leadSize }}; line-height:1.6; color:var(--color-neutral-300); text-wrap:pretty; animation:tq-up .7s cubic-bezier(.16,1,.3,1) .3s both;">Personalized growth reports designed to help creators uncover opportunities, eliminate guesswork, and build a stronger creator business.</p>
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:var(--space-4); animation:tq-up .7s cubic-bezier(.16,1,.3,1) .45s both;">
+          <a class="btn btn-primary" href="reports.html" style="letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">See The Reports</a>
+          <a class="btn btn-ghost" href="compare.html" style="letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Compare Tiers</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="position:relative; z-index:2; padding-top:var(--space-8); border-top:1px solid var(--color-divider);">
+      <p style="margin:0 0 var(--space-3); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-accent-300);">Our Mission</p>
+      <p style="margin:0; max-width:44rem; padding-right:{{ missionGutter }}; font-size:{{ missionSize }}; line-height:1.5; color:var(--color-neutral-200); text-wrap:pretty;">To empower creators to grow with intention rather than luck, by pairing human creativity with AI-driven clarity on what actually drives influence.</p>
+    </div>
+  </section>
+
+  <section id="pricing" data-screen-label="Pricing" style="padding:{{ sectionPad }}; max-width:1400px; margin:0 auto;">
+    <div style="max-width:52rem; margin-bottom:var(--space-8);">
+      <p style="margin:0 0 var(--space-3); font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-accent-300);">Growth Reports</p>
+      <h2 style="margin:0 0 var(--space-4); font-size:{{ h2Size }}; line-height:1.1; letter-spacing:-0.02em; color:var(--color-text);">Four ways to see your creator business clearly.</h2>
+      <p style="margin:0; font-size:1.02rem; line-height:1.6; color:var(--color-neutral-300); text-wrap:pretty;">Start with a snapshot or go all the way to hands-on partnership. Every tier builds on the one before it.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:{{ pricingCols }}; gap:var(--space-6); align-items:stretch;">
+
+      <article class="card" style="display:flex; flex-direction:column; gap:var(--space-4); padding:var(--space-8);">
+        <div>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-4); margin-bottom:var(--space-2);">
+            <p class="card-kicker" style="margin:0;">Tier 01</p>
+          </div>
+          <h3 class="card-title" style="margin:0 0 var(--space-2); font-size:1.25rem;">Creator Signal Scorecard</h3>
+          <p style="margin:0 0 var(--space-3); font-family:var(--font-heading); font-size:2.2rem; line-height:1; color:var(--color-accent);">$19.99</p>
+          <p style="margin:0; font-size:0.95rem; color:var(--color-accent-300);">Know where you stand.</p>
+        </div>
+        <p style="margin:0; font-size:0.92rem; line-height:1.6; color:var(--color-neutral-300); text-wrap:pretty;">A fast, personalized snapshot of the key signals that influence discoverability, engagement, and long-term growth.</p>
+        <div style="margin-top:auto; display:flex; flex-direction:column; gap:var(--space-4);">
+          <div style="border-top:1px solid var(--color-divider); padding-top:var(--space-4);">
+            <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Best For</p>
+            <p style="margin:0; font-size:0.9rem; line-height:1.55; color:var(--color-neutral-300);">Creators looking for an affordable starting point.</p>
+          </div>
+          <a class="btn btn-primary btn-block" href="intake.html?plan=scorecard" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Get My Scorecard</a>
+          <a href="reports.html#scorecard" style="display:inline-flex; align-items:center; gap:var(--space-2); font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent-300);" style-hover="color:var(--color-accent-400)">What's included <i class="ph ph-arrow-right" style="font-size:0.9rem;"></i></a>
+        </div>
+      </article>
+
+      <article class="card" style="display:flex; flex-direction:column; gap:var(--space-4); padding:var(--space-8);">
+        <div>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-4); margin-bottom:var(--space-2);">
+            <p class="card-kicker" style="margin:0;">Tier 02</p>
+          </div>
+          <h3 class="card-title" style="margin:0 0 var(--space-2); font-size:1.25rem;">Creator Growth Map</h3>
+          <p style="margin:0 0 var(--space-3); font-family:var(--font-heading); font-size:2.2rem; line-height:1; color:var(--color-accent);">$99</p>
+          <p style="margin:0; font-size:0.95rem; color:var(--color-accent-300);">Find the growth you're leaving behind.</p>
+        </div>
+        <p style="margin:0; font-size:0.92rem; line-height:1.6; color:var(--color-neutral-300); text-wrap:pretty;">A personalized Growth Map that uncovers hidden opportunities and a clear path toward faster audience growth.</p>
+        <div style="margin-top:auto; display:flex; flex-direction:column; gap:var(--space-4);">
+          <div style="border-top:1px solid var(--color-divider); padding-top:var(--space-4);">
+            <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Best For</p>
+            <p style="margin:0; font-size:0.9rem; line-height:1.55; color:var(--color-neutral-300);">Creators ready to stop guessing and start growing strategically.</p>
+          </div>
+          <a class="btn btn-primary btn-block" href="intake.html?plan=growth-map" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Build My Growth Map</a>
+          <a href="reports.html#growth-map" style="display:inline-flex; align-items:center; gap:var(--space-2); font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent-300);" style-hover="color:var(--color-accent-400)">What's included <i class="ph ph-arrow-right" style="font-size:0.9rem;"></i></a>
+        </div>
+      </article>
+
+      <article class="card elev-md" style="display:flex; flex-direction:column; gap:var(--space-4); padding:var(--space-8); border-color:var(--color-accent-700); background:linear-gradient(180deg, var(--color-accent-900) 0%, var(--color-surface) 55%);">
+        <div>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-4); margin-bottom:var(--space-2);">
+            <p class="card-kicker" style="margin:0;">Tier 03</p>
+            <span class="tag tag-accent">Most Complete</span>
+          </div>
+          <h3 class="card-title" style="margin:0 0 var(--space-2); font-size:1.25rem;">Creator Growth Blueprint</h3>
+          <p style="margin:0 0 var(--space-3); font-family:var(--font-heading); font-size:2.2rem; line-height:1; color:var(--color-accent);">$499</p>
+          <p style="margin:0; font-size:0.95rem; color:var(--color-accent-300);">Your complete creator growth strategy.</p>
+        </div>
+        <p style="margin:0; font-size:0.92rem; line-height:1.6; color:var(--color-neutral-300); text-wrap:pretty;">Our most comprehensive analysis — a personalized roadmap for your brand, content strategy, and monetization.</p>
+        <div style="margin-top:auto; display:flex; flex-direction:column; gap:var(--space-4);">
+          <div style="border-top:1px solid var(--color-divider); padding-top:var(--space-4);">
+            <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Best For</p>
+            <p style="margin:0; font-size:0.9rem; line-height:1.55; color:var(--color-neutral-300);">Creators serious about building a sustainable creator business.</p>
+          </div>
+          <a class="btn btn-primary btn-block" href="intake.html?plan=blueprint" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Get My Blueprint</a>
+          <a href="reports.html#blueprint" style="display:inline-flex; align-items:center; gap:var(--space-2); font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent-300);" style-hover="color:var(--color-accent-400)">What's included <i class="ph ph-arrow-right" style="font-size:0.9rem;"></i></a>
+        </div>
+      </article>
+
+      <article class="card" style="display:flex; flex-direction:column; gap:var(--space-4); padding:var(--space-8);">
+        <div>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-4); margin-bottom:var(--space-2);">
+            <p class="card-kicker" style="margin:0;">Tier 04</p>
+          </div>
+          <h3 class="card-title" style="margin:0 0 var(--space-2); font-size:1.25rem;">Creator Growth Partnership</h3>
+          <p style="margin:0 0 var(--space-3); font-family:var(--font-heading); font-size:2.2rem; line-height:1; color:var(--color-accent);">$1,197</p>
+          <p style="margin:0; font-size:0.95rem; color:var(--color-accent-300);">Implement your strategy with expert guidance.</p>
+        </div>
+        <p style="margin:0; font-size:0.92rem; line-height:1.6; color:var(--color-neutral-300); text-wrap:pretty;">The complete Blueprint plus personalized coaching, accountability, and content feedback as you execute.</p>
+        <div style="margin-top:auto; display:flex; flex-direction:column; gap:var(--space-4);">
+          <div style="border-top:1px solid var(--color-divider); padding-top:var(--space-4);">
+            <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Best For</p>
+            <p style="margin:0; font-size:0.9rem; line-height:1.55; color:var(--color-neutral-300);">Creators who want a trusted partner through implementation and sustained growth.</p>
+          </div>
+          <a class="btn btn-primary btn-block" href="intake.html?plan=partnership" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Apply for Partnership</a>
+          <a href="reports.html#partnership" style="display:inline-flex; align-items:center; gap:var(--space-2); font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent-300);" style-hover="color:var(--color-accent-400)">What's included <i class="ph ph-arrow-right" style="font-size:0.9rem;"></i></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="growth-tool" data-screen-label="Free Tool" style="padding:0 {{ inlinePad }} {{ inlinePadBottom }}; max-width:1400px; margin:0 auto;">
+    <div style="max-width:44rem; margin:0 auto;">
+      <p style="margin:0 0 var(--space-4); display:flex; align-items:center; gap:var(--space-3); font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--color-accent-300);"><span style="width:34px; height:1px; background:var(--color-accent-600); display:inline-block;"></span>Free Tool</p>
+      <h2 style="margin:0 0 var(--space-4); font-size:{{ h2Size }}; line-height:1.12; letter-spacing:-0.02em; color:var(--color-text); text-wrap:pretty;">How much growth are you leaving on the table?</h2>
+      <p style="margin:0 0 var(--space-8); max-width:34rem; font-size:1.02rem; line-height:1.6; color:var(--color-neutral-300); text-wrap:pretty;">Enter three numbers from your profile. We'll estimate your engagement health and what stalled growth may be costing you.</p>
+
+      <div class="card" style="padding:{{ toolPad }};">
+        <sc-if value="{{ toolFormOpen }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex; flex-direction:column; gap:var(--space-6);">
+            <div class="field">
+              <label for="tiq-followers">Current followers</label>
+              <input class="input" id="tiq-followers" type="number" inputMode="numeric" min="1" placeholder="e.g. 8500" value="{{ followersValue }}" onChange="{{ onFollowers }}" />
+            </div>
+            <div class="field">
+              <label for="tiq-eng">Average likes + comments per post</label>
+              <input class="input" id="tiq-eng" type="number" inputMode="numeric" min="0" placeholder="e.g. 240" value="{{ engValue }}" onChange="{{ onEng }}" />
+            </div>
+            <div class="field">
+              <label for="tiq-cadence">Posts per week</label>
+              <select class="input" id="tiq-cadence" value="{{ cadenceValue }}" onChange="{{ onCadence }}">
+                <option value="">Choose…</option>
+                <option value="0.5">Less than 1</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="10">8 or more</option>
+              </select>
+            </div>
+            <button type="button" class="btn btn-primary btn-block" onClick="{{ runTool }}" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap;">Trace My Signal</button>
+            <p style="margin:0; min-height:1em; font-size:0.85rem; color:{{ errorColor }};" role="alert">{{ toolError }}</p>
+            <p style="margin:0; font-size:0.8rem; line-height:1.6; text-align:center; color:var(--color-neutral-400);">Nothing is stored. The estimate runs in your browser.</p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ toolResultsOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; gap:var(--space-8);">
+            <div style="display:flex; align-items:flex-start; gap:var(--space-4); padding-bottom:var(--space-6); border-bottom:1px solid var(--color-divider);">
+              <span style="width:11px; height:11px; border-radius:50%; flex:0 0 auto; margin-top:8px; background:{{ verdictColor }}; box-shadow:0 0 0 4px rgba(255,255,255,0.05);"></span>
+              <div>
+                <p style="margin:0 0 var(--space-2); font-family:var(--font-heading); font-size:1.5rem; line-height:1.15; color:var(--color-text);">{{ grade }}</p>
+                <p style="margin:0; font-size:0.92rem; line-height:1.55; color:var(--color-neutral-300); text-wrap:pretty;">{{ gradeSub }}</p>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:{{ metricCols }}; gap:1px; background:var(--color-divider); border-radius:var(--radius-md); overflow:hidden;">
+              <div style="background:var(--color-bg); padding:var(--space-6);">
+                <p style="margin:0 0 var(--space-2); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-neutral-400);">Engagement rate</p>
+                <p style="margin:0; font-family:var(--font-heading); font-size:1.7rem; line-height:1; color:{{ verdictColor }};">{{ erLabel }}</p>
+                <p style="margin:var(--space-2) 0 0; font-size:0.8rem; color:var(--color-neutral-400);">{{ erSub }}</p>
+              </div>
+              <div style="background:var(--color-bg); padding:var(--space-6);">
+                <p style="margin:0 0 var(--space-2); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-neutral-400);">Benchmark for your size</p>
+                <p style="margin:0; font-family:var(--font-heading); font-size:1.7rem; line-height:1; color:var(--color-text);">{{ benchLabel }}</p>
+                <p style="margin:var(--space-2) 0 0; font-size:0.8rem; color:var(--color-neutral-400);">{{ benchSub }}</p>
+              </div>
+              <div style="background:var(--color-bg); padding:var(--space-6);">
+                <p style="margin:0 0 var(--space-2); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-neutral-400);">Monthly engagements</p>
+                <p style="margin:0; font-family:var(--font-heading); font-size:1.7rem; line-height:1; color:var(--color-text);">{{ monthlyLabel }}</p>
+                <p style="margin:var(--space-2) 0 0; font-size:0.8rem; color:var(--color-neutral-400);">{{ monthlySub }}</p>
+              </div>
+              <div style="background:var(--color-bg); padding:var(--space-6);">
+                <p style="margin:0 0 var(--space-2); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-neutral-400);">Reachable at benchmark</p>
+                <p style="margin:0; font-family:var(--font-heading); font-size:1.7rem; line-height:1; color:var(--color-text);">{{ potentialLabel }}</p>
+                <p style="margin:var(--space-2) 0 0; font-size:0.8rem; color:var(--color-neutral-400);">{{ potentialSub }}</p>
+              </div>
+            </div>
+
+            <div>
+              <div style="display:flex; justify-content:space-between; gap:var(--space-4); margin-bottom:var(--space-3); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">
+                <span>Where you sit</span>
+                <span>{{ pctLabel }}</span>
+              </div>
+              <div style="position:relative; height:8px; border-radius:999px; background:var(--color-surface);">
+                <div style="height:100%; border-radius:999px; width:{{ fillWidth }}; background:{{ verdictColor }}; transition:width .9s cubic-bezier(.22,.8,.3,1);"></div>
+                <div style="position:absolute; top:-4px; left:{{ markLeft }}; width:2px; height:16px; background:var(--color-accent-300); opacity:0.9;"></div>
+              </div>
+              <p style="margin:var(--space-3) 0 0; font-size:0.8rem; color:var(--color-neutral-400);">{{ barFoot }}</p>
+            </div>
+
+            <ul style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column;">
+              <sc-for list="{{ findings }}" as="item" hint-placeholder-count="3">
+                <li style="display:flex; gap:var(--space-4); padding:var(--space-4) 0; border-top:1px solid var(--color-divider); font-size:0.92rem; line-height:1.55; color:var(--color-neutral-200);">
+                  <span style="flex:0 0 5.5rem; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent-300); padding-top:3px;">{{ item.tag }}</span>
+                  <span>{{ item.text }}</span>
+                </li>
+              </sc-for>
+            </ul>
+
+            <div style="border:1px solid var(--color-accent-700); border-radius:var(--radius-md); padding:var(--space-8); background:linear-gradient(135deg, var(--color-accent-900) 0%, var(--color-surface) 100%);">
+              <p style="margin:0 0 var(--space-3); font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-accent-300);">Left on the table</p>
+              <p style="margin:0 0 var(--space-3); font-family:var(--font-heading); font-size:2rem; line-height:1.1; color:var(--color-text);">{{ gapNum }}</p>
+              <p style="margin:0; font-size:0.9rem; line-height:1.6; color:var(--color-neutral-300); text-wrap:pretty;">{{ gapText }}</p>
+            </div>
+
+            <div style="border:1px solid var(--color-divider); border-radius:var(--radius-md); padding:var(--space-8); background:var(--color-surface);">
+              <p style="margin:0 0 var(--space-2); font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-accent-300);">What a brand should pay you</p>
+              <p style="margin:0 0 var(--space-6); font-size:0.88rem; line-height:1.6; color:var(--color-neutral-400); text-wrap:pretty;">{{ dealIntro }}</p>
+
+              <div style="display:flex; align-items:baseline; gap:var(--space-3); flex-wrap:wrap; margin-bottom:var(--space-2);">
+                <span style="font-family:var(--font-heading); font-size:2rem; line-height:1.1; color:var(--color-text);">{{ rateMid }}</span>
+                <span style="font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-neutral-400);">per sponsored post</span>
+              </div>
+              <p style="margin:0 0 var(--space-6); font-size:0.85rem; line-height:1.6; color:var(--color-neutral-400);">{{ rateRange }}</p>
+
+              <div style="display:grid; grid-template-columns:1fr auto; gap:1px; background:var(--color-divider); border-radius:var(--radius-sm); overflow:hidden; margin-bottom:var(--space-6);">
+                <sc-for list="{{ ladder }}" as="row" hint-placeholder-count="5">
+                  <div style="background:var(--color-bg); padding:var(--space-3) var(--space-4); font-size:0.88rem; color:{{ row.color }};">{{ row.label }}</div>
+                  <div style="background:var(--color-bg); padding:var(--space-3) var(--space-4); font-size:0.88rem; text-align:right; white-space:nowrap; color:{{ row.color }};">{{ row.value }}</div>
+                </sc-for>
+              </div>
+
+              <div class="field" style="margin-bottom:var(--space-6);">
+                <label for="tiq-deals">Deals per month</label>
+                <select class="input" id="tiq-deals" value="{{ dealsValue }}" onChange="{{ onDeals }}">
+                  <option value="1">1 deal a month</option>
+                  <option value="2">2 deals a month</option>
+                  <option value="4">4 deals a month</option>
+                  <option value="8">8 deals a month</option>
+                </select>
+              </div>
+
+              <div style="border-top:1px solid var(--color-divider); padding-top:var(--space-6); display:flex; flex-direction:column; gap:var(--space-2);">
+                <p style="margin:0; font-size:0.9rem; line-height:1.6; color:var(--color-neutral-200);">At your current engagement: <strong style="color:var(--color-accent-300); font-weight:600;">{{ annualNow }}</strong> a year.</p>
+                <p style="margin:0; font-size:0.9rem; line-height:1.6; color:var(--color-neutral-200);">At benchmark engagement for {{ tierLabel }} accounts: <strong style="color:var(--color-accent-300); font-weight:600;">{{ annualBench }}</strong> a year.</p>
+                <p style="margin:0; font-size:0.9rem; line-height:1.6; color:var(--color-neutral-200);">{{ annualDeltaLead }} <strong style="color:var(--color-accent-300); font-weight:600;">{{ annualDeltaValue }}</strong>{{ annualDeltaTail }}</p>
+              </div>
+            </div>
+
+            <div style="border:1px solid var(--color-divider); border-radius:var(--radius-md); padding:var(--space-8); background:var(--color-surface);">
+              <sc-if value="{{ captureOpen }}" hint-placeholder-val="{{ true }}">
+                <div>
+                  <p style="margin:0 0 var(--space-2); font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-accent-300);">Keep these numbers</p>
+                  <p style="margin:0 0 var(--space-6); font-size:0.88rem; line-height:1.6; color:var(--color-neutral-400); text-wrap:pretty;">We'll email this signal read plus the rate card, and a short breakdown of what to fix first.</p>
+                  <div style="display:flex; flex-wrap:wrap; gap:var(--space-4); align-items:flex-end;">
+                    <div class="field" style="flex:1 1 16rem; min-width:0;">
+                      <label for="tiq-email">Email address</label>
+                      <input class="input" id="tiq-email" type="email" placeholder="you@studio.com" value="{{ captureEmailValue }}" onChange="{{ onCaptureEmail }}" />
+                    </div>
+                    <button type="button" class="btn btn-primary" onClick="{{ sendCapture }}" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Send It To Me</button>
+                  </div>
+                  <p style="margin:var(--space-3) 0 0; min-height:1em; font-size:0.8rem; color:{{ captureErrorColor }};" role="alert">{{ captureError }}</p>
+                  <p style="margin:var(--space-2) 0 0; font-size:0.78rem; line-height:1.55; color:var(--color-neutral-500);">One email with your results. No list, no drip sequence.</p>
+                </div>
+              </sc-if>
+              <sc-if value="{{ captureDone }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex; flex-direction:column; gap:var(--space-3); align-items:flex-start;">
+                  <i class="ph ph-paper-plane-tilt" style="font-size:1.5rem; color:var(--color-accent);"></i>
+                  <p style="margin:0; font-family:var(--font-heading); font-size:1.15rem; color:var(--color-text);">On its way.</p>
+                  <p style="margin:0; max-width:32rem; font-size:0.9rem; line-height:1.6; color:var(--color-neutral-300);">We've sent your signal read to {{ captureEmailValue }}.</p>
+                </div>
+              </sc-if>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:var(--space-4);">
+              <a class="btn btn-primary btn-block" href="intake.html?plan=growth-map" style="letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap;">Get The Full Signal Map</a>
+              <button type="button" onClick="{{ resetTool }}" style="background:none; border:0; cursor:pointer; font-family:var(--font-body); font-size:0.82rem; color:var(--color-neutral-400); text-decoration:underline; text-underline-offset:3px;" style-hover="color:var(--color-text)">Run different numbers</button>
+            </div>
+
+            <p style="margin:0; font-size:0.72rem; line-height:1.65; color:var(--color-neutral-500);">Estimates use public engagement-rate benchmarks by follower tier, a $0.05 value per engagement, and sponsored-post pricing of $8–18 per 1,000 followers weighted by your engagement multiplier. Real rates move with niche, audience geography, and usage terms. Treat the output as a directional read, not a quote.</p>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" data-screen-label="Signal" style="scroll-margin-top:var(--space-8); position:relative; overflow:hidden; margin:0 auto; max-width:1400px;">
+    <div style="position:relative; overflow:hidden; border-radius:var(--radius-lg); margin:0 {{ inlinePad }};">
+      <video ref="{{ bandVideoRef }}" muted="{{ true }}" defaultMuted="{{ true }}" playsInline="{{ true }}" src="uploads/grok-video-08767f38-3999-4134-b9a5-fc704074fd10.mp4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:1; filter:brightness(1.45) saturate(1.12);"></video>
+      <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(22,24,38,0.82) 0%, rgba(22,24,38,0.55) 55%, rgba(22,24,38,0.42) 100%);"></div>
+      <div style="position:relative; z-index:1; padding:{{ bandPad }}; display:flex; flex-direction:column; gap:var(--space-8); max-width:60rem;">
+        <div>
+          <p style="margin:0 0 var(--space-3); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-accent-300);">How It Works</p>
+          <h2 style="margin:0 0 var(--space-4); max-width:30rem; font-size:{{ h2Size }}; line-height:1.1; letter-spacing:-0.02em; color:var(--color-text);">Human creativity, AI clarity.</h2>
+          <p style="margin:0; max-width:36rem; font-size:1.02rem; line-height:1.6; color:var(--color-neutral-200); text-wrap:pretty;">We read the signals behind your content, compare them against creators like you, and hand back the few moves that actually change your trajectory.</p>
+        </div>
+        <div style="display:grid; grid-template-columns:{{ stepCols }}; gap:var(--space-6);">
+          <div style="border-top:1px solid var(--color-accent-700); padding-top:var(--space-4);">
+            <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-accent-300);">01 · Connect</p>
+            <p style="margin:0; font-size:0.95rem; line-height:1.55; color:var(--color-neutral-300);">Share the platforms you publish on. No dashboards to configure.</p>
+          </div>
+          <div style="border-top:1px solid var(--color-accent-700); padding-top:var(--space-4);">
+            <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-accent-300);">02 · Trace</p>
+            <p style="margin:0; font-size:0.95rem; line-height:1.55; color:var(--color-neutral-300);">We score visibility, engagement, consistency and growth readiness.</p>
+          </div>
+          <div style="border-top:1px solid var(--color-accent-700); padding-top:var(--space-4);">
+            <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-accent-300);">03 · Act</p>
+            <p style="margin:0; font-size:0.95rem; line-height:1.55; color:var(--color-neutral-300);">You get prioritized moves — not another wall of analytics.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Close" style="padding:{{ sectionPad }}; max-width:1400px; margin:0 auto;">
+    <div style="position:relative; overflow:hidden; border-radius:var(--radius-lg); background:linear-gradient(120deg, var(--color-section) 0%, var(--color-section-glow) 100%); padding:{{ ctaPad }}; display:flex; flex-direction:{{ ctaDirection }}; align-items:{{ ctaAlign }}; justify-content:space-between; gap:var(--space-8);">
+      <div style="max-width:38rem;">
+        <h2 style="margin:0 0 var(--space-4); font-size:{{ h2Size }}; line-height:1.1; letter-spacing:-0.02em; color:var(--color-accent-100);">Ready when you are.</h2>
+        <p style="margin:0; font-size:1.02rem; line-height:1.6; color:var(--color-accent-200); text-wrap:pretty;">Pick the report that matches where you are today — you can upgrade into the next tier at any point.</p>
+      </div>
+      <a class="btn btn-primary" href="intake.html?plan=scorecard" style="letter-spacing:0.06em; text-transform:uppercase; border-color:var(--color-accent-200); color:var(--color-accent-100); white-space:nowrap;">Get My Scorecard</a>
+    </div>
+    <div style="margin-top:var(--space-8); padding-top:var(--space-6); border-top:1px solid var(--color-divider); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:var(--space-4);">
+      <p style="margin:0; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-neutral-500);">Trace IQ · Social Intelligence</p>
+      <a href="mailto:info@traceiq.co" style="display:inline-flex; align-items:center; gap:var(--space-2); font-size:0.85rem; color:var(--color-accent-300);" style-hover="color:var(--color-accent-400)"><i class="ph ph-envelope-simple" style="font-size:1rem;"></i>info@traceiq.co</a>
+    </div>
+  </section>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+const FEATURES = [
+  ['Creator Signal Score', 1, 1, 1, 1],
+  ['Visibility Analysis', 1, 1, 1, 1],
+  ['Engagement Analysis', 1, 1, 1, 1],
+  ['Growth Readiness', 1, 1, 1, 1],
+  ['Quick Wins', 1, 1, 1, 1],
+  ['Missing Follower Signals', 0, 1, 1, 1],
+  ['Benchmark Analysis', 0, 1, 1, 1],
+  ['Growth Opportunities', 0, 1, 1, 1],
+  ['Audience Journey Analysis', 0, 0, 1, 1],
+  ['Content Funnel Analysis', 0, 0, 1, 1],
+  ['Monetization Assessment', 0, 0, 1, 1],
+  ['90-Day Growth Plan', 0, 0, 1, 1],
+  ['Human Expert Review', 0, 0, 1, 1],
+  ['4 Growth Strategy Sessions', 0, 0, 0, 1],
+  ['4 Content Pulse Checks', 0, 0, 0, 1],
+  ['Loom Video Feedback', 0, 0, 0, 1],
+  ['Accountability Support', 0, 0, 0, 1]
+];
+
+const TARGET_CADENCE = 4;
+const VALUE_PER_ENGAGEMENT = 0.05;
+const FOLLOWER_CONVERSION = 0.02;
+
+function benchmarkFor(followers) {
+  if (followers < 5000) return { er: 5.0, tier: 'under 5K' };
+  if (followers < 20000) return { er: 3.5, tier: '5K–20K' };
+  if (followers < 100000) return { er: 2.4, tier: '20K–100K' };
+  if (followers < 500000) return { er: 1.7, tier: '100K–500K' };
+  return { er: 1.2, tier: '500K+' };
+}
+const fmt = (n) => Math.round(n).toLocaleString('en-US');
+const money = (n) => '$' + Math.round(n).toLocaleString('en-US');
+
+class Component extends DCLogic {
+  state = { w: 1440, playing: false, muted: false, followers: '', eng: '', cadence: '', toolError: '', result: null, fillOn: false, deals: '2', captureEmail: '', captureError: '', captureDone: false };
+
+  computeTool() {
+    const followers = parseFloat(this.state.followers);
+    const eng = parseFloat(this.state.eng);
+    const cadence = parseFloat(this.state.cadence);
+    if (!followers || followers < 1) return this.setState({ toolError: 'Enter your follower count to continue.' });
+    if (isNaN(eng) || eng < 0) return this.setState({ toolError: 'Enter your average likes + comments per post.' });
+    if (!cadence) return this.setState({ toolError: 'Pick how often you post each week.' });
+    if (eng > followers * 2) return this.setState({ toolError: 'That engagement number is higher than expected for your follower count. Double-check it.' });
+
+    const bm = benchmarkFor(followers);
+    const er = (eng / followers) * 100;
+    const ratio = er / bm.er;
+    const postsMonth = cadence * 4.33;
+    const current = eng * postsMonth;
+    const targetCad = Math.max(cadence, TARGET_CADENCE);
+    const potential = (bm.er / 100) * followers * targetCad * 4.33;
+    const gap = Math.max(0, potential - current);
+    const missedFollowers = gap * FOLLOWER_CONVERSION;
+    const missedValue = gap * VALUE_PER_ENGAGEMENT;
+
+    let grade, sub, color;
+    if (ratio >= 1.15) { grade = 'Compounding'; color = 'var(--color-success, #43D6A0)'; sub = 'Your audience is responding above the benchmark for your size. The job now is protecting that signal as you scale.'; }
+    else if (ratio >= 0.85) { grade = 'Holding'; color = 'var(--color-accent)'; sub = 'You are roughly at benchmark. Healthy, but nothing here is pulling you upward on its own.'; }
+    else if (ratio >= 0.55) { grade = 'Slipping'; color = '#F2A93B'; sub = 'Engagement is trailing accounts your size. Reach is likely being throttled before your posts finish distributing.'; }
+    else { grade = 'Stalled'; color = '#F2695C'; sub = 'Engagement is well under benchmark. Growth at this rate depends on luck rather than a repeatable signal.'; }
+
+    const findings = [];
+    findings.push(ratio < 0.85
+      ? { tag: 'Signal', text: 'Your posts convert ' + Math.round((1 - ratio) * 100) + '% fewer followers into interactions than the benchmark. That is a content-match problem before it is a reach problem.' }
+      : { tag: 'Signal', text: 'Your interaction rate is doing the heavy lifting. Guard the formats that earn it before chasing new ones.' });
+    if (cadence < TARGET_CADENCE) {
+      findings.push({ tag: 'Cadence', text: 'At ' + (cadence === 0.5 ? 'under 1 post' : cadence + ' posts') + ' a week you are giving the algorithm ' + fmt(postsMonth) + ' chances a month. Moving to ' + TARGET_CADENCE + ' adds ' + fmt((TARGET_CADENCE - cadence) * 4.33) + ' more without changing anything else.' });
+    } else if (cadence >= 7 && ratio < 0.85) {
+      findings.push({ tag: 'Cadence', text: 'You are posting ' + fmt(postsMonth) + ' times a month and engagement still trails benchmark. Volume is not the constraint — the concepts are.' });
+    } else {
+      findings.push({ tag: 'Cadence', text: 'Your posting rhythm is already past the point where frequency limits growth.' });
+    }
+    findings.push({ tag: 'Ceiling', text: 'At benchmark performance your account would generate roughly ' + fmt(potential) + ' interactions a month — about ' + (current > 0 ? (potential / current).toFixed(1) + '×' : '—') + ' your current output.' });
+
+    const mult = Math.max(0.55, Math.min(1.85, ratio));
+    const k = followers / 1000;
+    const rateNow = { low: k * 8 * mult, mid: k * 12 * mult, high: k * 18 * mult };
+    const rateBench = { low: k * 8, mid: k * 12, high: k * 18 };
+
+    const result = {
+      color, grade, sub,
+      tier: bm.tier,
+      rateNowMid: rateNow.mid,
+      rateBenchMid: rateBench.mid,
+      dealIntro: 'Rates are anchored to your audience size, then adjusted by how hard that audience actually engages — which is what brands are buying. Your engagement multiplier is ' + mult.toFixed(2) + '×.',
+      rateMid: money(rateNow.mid),
+      rateRange: 'Negotiating range: ' + money(rateNow.low) + ' to ' + money(rateNow.high) + '. Open high, settle above the midpoint if the brand wants usage rights or exclusivity.',
+      ladder: [
+        { label: 'Single in-feed post', value: money(rateNow.mid), color: 'var(--color-text)' },
+        { label: 'Post + story set', value: money(rateNow.mid * 1.35), color: 'var(--color-text)' },
+        { label: 'Short-form video (Reel / TikTok)', value: money(rateNow.mid * 1.6), color: 'var(--color-text)' },
+        { label: 'Add 90-day usage rights', value: money(rateNow.mid * 0.5), color: 'var(--color-text)' },
+        { label: 'At benchmark engagement', value: money(rateBench.mid) + ' / post', color: 'var(--color-accent-300)' }
+      ],
+      erLabel: er.toFixed(2) + '%',
+      erSub: fmt(eng) + ' interactions per post',
+      benchLabel: bm.er.toFixed(1) + '%',
+      benchSub: 'Typical for ' + bm.tier + ' accounts',
+      monthlyLabel: fmt(current),
+      monthlySub: 'At ' + (cadence === 0.5 ? 'under 1' : cadence === 10 ? '8+' : cadence) + ' posts per week',
+      potentialLabel: fmt(potential),
+      potentialSub: 'At benchmark and ' + targetCad + ' posts per week',
+      pctLabel: Math.round(ratio * 100) + '% of benchmark',
+      pct: Math.max(Math.min(ratio, 1.6) / 1.6 * 100, 2),
+      markLeft: 'calc(' + (1 / 1.6 * 100) + '% - 1px)',
+      barFoot: 'The accent line is the benchmark for ' + bm.tier + ' accounts.',
+      findings,
+      gapNum: gap <= 0 ? 'Nothing measurable' : fmt(gap) + ' interactions a month',
+      gapText: gap <= 0
+        ? 'You are already performing at or above the benchmark for your size and cadence. The opportunity from here is in monetization and format expansion, not in fixing engagement.'
+        : 'That gap works out to roughly ' + fmt(missedFollowers) + ' followers a month you are not picking up, and about ' + money(missedValue) + ' a month — ' + money(missedValue * 12) + ' a year — in sponsored-content value you cannot currently charge for.'
+    };
+    this.setState({ toolError: '', result, fillOn: false });
+    setTimeout(() => { if (this.state.result) this.setState({ fillOn: true }); }, 80);
+  }
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+  renderVals() {
+    const w = this.state.w;
+    const tablet = w <= 1024, mobile = w <= 768, small = w <= 480;
+    const mark = (v) => v ? '\u2713' : '\u2014';
+    const col = (v) => v ? 'var(--color-accent-400)' : 'var(--color-neutral-600)';
+    const rows = FEATURES.map(([name, a, b, c, d]) => ({
+      name,
+      c1: mark(a), c2: mark(b), c3: mark(c), c4: mark(d),
+      c1color: col(a), c2color: col(b), c3color: col(c), c4color: col(d)
+    }));
+    const playing = this.state.playing, muted = this.state.muted, r = this.state.result;
+    const dealsN = parseFloat(this.state.deals) || 2;
+    let deltaCopy = { lead: '', value: '', tail: '' };
+    if (r) {
+      const delta = (r.rateBenchMid - r.rateNowMid) * dealsN * 12;
+      if (delta > 0) deltaCopy = { lead: 'Closing the engagement gap is worth about', value: money(delta), tail: ' a year at the same number of deals — before you add a single follower.' };
+      else if (delta < 0) deltaCopy = { lead: 'You are pricing', value: money(Math.abs(delta)), tail: ' a year above a benchmark account your size. If you are charging less than that, you are leaving the premium on the table.' };
+      else deltaCopy = { lead: 'You are priced right at benchmark for your size.', value: '', tail: '' };
+    }
+    return {
+      rows,
+      audioRef: (el) => {
+        if (!el || this.audio === el) return;
+        this.audio = el;
+        el.loop = true;
+        el.volume = 0.35;
+        el.muted = this.state.muted;
+        try {
+          const t = parseFloat(localStorage.getItem('traceiq-audio-time') || '0');
+          if (t > 0 && isFinite(t)) el.currentTime = t;
+        } catch (e) {}
+        el.addEventListener('timeupdate', () => {
+          try { localStorage.setItem('traceiq-audio-time', String(el.currentTime)); } catch (e) {}
+        });
+        el.addEventListener('play', () => this.setState({ playing: true }));
+        el.addEventListener('pause', () => this.setState({ playing: false }));
+      },
+      togglePlay: () => {
+        const a = this.audio;
+        if (!a) return;
+        if (a.paused) { const p = a.play(); if (p && p.catch) p.catch(() => {}); }
+        else a.pause();
+      },
+      toggleMute: () => {
+        const a = this.audio;
+        const next = !this.state.muted;
+        if (a) a.muted = next;
+        this.setState({ muted: next });
+      },
+      playing, muted,
+      playIcon: playing ? 'ph ph-pause' : 'ph ph-play',
+      playLabel: playing ? 'Pause background music' : 'Play background music',
+      muteIcon: muted ? 'ph ph-speaker-x' : 'ph ph-speaker-high',
+      muteLabel: muted ? 'Unmute' : 'Mute',
+      audioLabel: playing ? (muted ? 'Muted' : 'Now Playing') : 'Sound Off',
+      pagePad: mobile ? 'var(--space-8) var(--space-6)' : (w <= 1200 ? 'var(--space-8)' : 'var(--space-8) 4rem'),
+      sectionPad: mobile ? '3rem var(--space-6)' : (w <= 1200 ? '4rem var(--space-8)' : '5.5rem 4rem'),
+      h1Size: small ? '2.6rem' : (mobile ? '3.2rem' : (tablet ? '4rem' : '5rem')),
+      h2Size: mobile ? '1.9rem' : '2.6rem',
+      leadSize: mobile ? '1.02rem' : '1.2rem',
+      missionSize: mobile ? '0.98rem' : '1.1rem',
+      missionGutter: mobile ? '0' : '15rem',
+      inlinePad: mobile ? 'var(--space-6)' : '4rem',
+      inlinePadBottom: mobile ? '3rem' : '4rem',
+      linkCols: mobile ? '1fr' : 'repeat(2, minmax(0,1fr))',
+      bandPad: mobile ? 'var(--space-8)' : '4rem',
+      toolPad: mobile ? 'var(--space-6)' : 'var(--space-8)',
+      metricCols: small ? '1fr' : 'repeat(2, minmax(0,1fr))',
+      toolFormOpen: !r,
+      toolResultsOpen: !!r,
+      toolError: this.state.toolError,
+      errorColor: this.state.toolError ? '#F2695C' : 'transparent',
+      followersValue: this.state.followers,
+      engValue: this.state.eng,
+      cadenceValue: this.state.cadence,
+      onFollowers: (e) => this.setState({ followers: e.target.value }),
+      onEng: (e) => this.setState({ eng: e.target.value }),
+      onCadence: (e) => this.setState({ cadence: e.target.value }),
+      runTool: () => this.computeTool(),
+      resetTool: () => this.setState({ result: null, fillOn: false, captureDone: false, captureError: '' }),
+      captureOpen: !this.state.captureDone,
+      captureDone: this.state.captureDone,
+      captureEmailValue: this.state.captureEmail,
+      captureError: this.state.captureError,
+      captureErrorColor: this.state.captureError ? '#F2695C' : 'transparent',
+      onCaptureEmail: (e) => this.setState({ captureEmail: e.target.value, captureError: '' }),
+      sendCapture: () => {
+        const v = (this.state.captureEmail || '').trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return this.setState({ captureError: 'Enter a valid email address.' });
+        const res = this.state.result || {};
+        const payload = {
+          _subject: 'Trace IQ signal check — ' + v,
+          Email: v,
+          Followers: this.state.followers,
+          'Avg engagement per post': this.state.eng,
+          'Posts per week': this.state.cadence,
+          'Deals per month': this.state.deals,
+          Verdict: res.grade || '',
+          'Engagement rate': res.erLabel || '',
+          Benchmark: res.benchLabel || '',
+          'Vs benchmark': res.pctLabel || '',
+          'Monthly engagements': res.monthlyLabel || '',
+          'Reachable at benchmark': res.potentialLabel || '',
+          'Rate per post': res.rateMid || '',
+          'Left on the table': res.gapNum || ''
+        };
+        this.setState({ captureDone: true, captureError: '' });
+        fetch('https://formsubmit.co/ajax/info@traceiq.co', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(() => {});
+      },
+      verdictColor: r ? r.color : 'var(--color-accent)',
+      grade: r ? r.grade : '',
+      gradeSub: r ? r.sub : '',
+      erLabel: r ? r.erLabel : '',
+      erSub: r ? r.erSub : '',
+      benchLabel: r ? r.benchLabel : '',
+      benchSub: r ? r.benchSub : '',
+      monthlyLabel: r ? r.monthlyLabel : '',
+      monthlySub: r ? r.monthlySub : '',
+      potentialLabel: r ? r.potentialLabel : '',
+      potentialSub: r ? r.potentialSub : '',
+      pctLabel: r ? r.pctLabel : '',
+      fillWidth: r && this.state.fillOn ? r.pct + '%' : '0%',
+      markLeft: r ? r.markLeft : '62.5%',
+      dealIntro: r ? r.dealIntro : '',
+      rateMid: r ? r.rateMid : '',
+      rateRange: r ? r.rateRange : '',
+      ladder: r ? r.ladder : [],
+      tierLabel: r ? r.tier : '',
+      dealsValue: this.state.deals,
+      onDeals: (e) => this.setState({ deals: e.target.value }),
+      annualNow: r ? money(r.rateNowMid * dealsN * 12) : '',
+      annualBench: r ? money(r.rateBenchMid * dealsN * 12) : '',
+      annualDeltaLead: deltaCopy.lead,
+      annualDeltaValue: deltaCopy.value,
+      annualDeltaTail: deltaCopy.tail,
+      barFoot: r ? r.barFoot : '',
+      findings: r ? r.findings : [],
+      gapNum: r ? r.gapNum : '',
+      gapText: r ? r.gapText : '',
+      stepCols: mobile ? '1fr' : 'repeat(3, minmax(0,1fr))',
+      bandVideoRef: (el) => {
+        if (!el || this.band === el) return;
+        this.band = el;
+        el.loop = false;
+        el.muted = true;
+        el.volume = 0;
+        el.setAttribute('muted', '');
+        const p = el.play();
+        if (p && p.catch) p.catch(() => {});
+      },
+      pricingCols: tablet ? (mobile ? '1fr' : 'repeat(2, minmax(0,1fr))') : 'repeat(4, minmax(0,1fr))',
+      navDisplay: tablet ? 'none' : 'flex',
+      toggleDisplay: tablet ? 'inline-flex' : 'none',
+      ctaDirection: mobile ? 'column' : 'row',
+      ctaAlign: mobile ? 'flex-start' : 'center',
+      ctaPad: mobile ? 'var(--space-8)' : '3rem',
+      videoRef: (el) => {
+        if (!el || this.attached === el) return;
+        this.attached = el;
+        el.loop = false;
+        el.muted = true;
+        const p = el.play();
+        if (p && p.catch) p.catch(() => {});
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

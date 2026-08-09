@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="uploads/grok_image_1785190907713.jpg">
+<link rel="stylesheet" href="_ds/nocturne-c670020c-d868-4314-9b8c-8cad9d5cba97/styles.css">
+<script src="_ds/nocturne-c670020c-d868-4314-9b8c-8cad9d5cba97/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+  :root {
+    --color-accent: #5aa9fb;
+    --color-accent-100: #f0f7ff;
+    --color-accent-200: #dbeafe;
+    --color-accent-300: #bcd9fd;
+    --color-accent-400: #8ec1fc;
+    --color-accent-500: #5aa9fb;
+    --color-accent-600: #3f8ada;
+    --color-accent-700: #2e69a8;
+    --color-accent-800: #234b78;
+    --color-accent-900: #17304c;
+    --color-accent-2: #5aa9fb;
+    --color-accent-2-300: #bcd9fd;
+    --color-accent-2-400: #8ec1fc;
+    --color-accent-2-500: #5aa9fb;
+    --color-section: #143259;
+    --color-section-glow: #1d477c;
+    --color-section-ghost: #2f6aa8;
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; background:var(--color-bg); }
+  a { color:var(--color-accent); text-decoration:none; }
+  a:hover { color:var(--color-accent-400); }
+  :focus-visible { outline:2px solid var(--color-accent); outline-offset:2px; }
+</style>
+</helmet>
+<main style="position:relative; background:var(--color-bg); color:var(--color-text); font-family:var(--font-body); min-height:100vh;">
+
+  <div style="position:fixed; inset:0; z-index:0; pointer-events:none;">
+    <video ref="{{ bgVideoRef }}" muted="{{ true }}" playsInline="{{ true }}" src="uploads/grok_video_2026-07-15-22-08-46 (1).mp4" style="width:100%; height:100%; object-fit:cover; opacity:0.95; filter:brightness(1.5) saturate(1.12);"></video>
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(22,24,38,0.45) 0%, rgba(22,24,38,0.6) 45%, rgba(22,24,38,0.7) 100%);"></div>
+  </div>
+
+  <div style="position:relative; z-index:1;">
+
+  <nav style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-8); padding:{{ navPad }}; border-bottom:1px solid var(--color-divider);">
+    <a href="index.html" aria-label="Trace IQ" style="display:block; width:132px; height:44px; overflow:hidden; position:relative; mask-image:radial-gradient(ellipse 62% 62% at 50% 50%, #000 55%, transparent 100%); -webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 50%, #000 55%, transparent 100%);">
+      <img src="uploads/grok_image_1785190907713.jpg" alt="Trace IQ" style="position:absolute; left:-50px; top:-93px; width:225px; height:225px; max-width:none; object-fit:cover; display:block;" /></a>
+    <div style="display:{{ navDisplay }}; align-items:center; gap:var(--space-8);">
+      <a href="index.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-neutral-400);" style-hover="color:var(--color-text)">Home</a>
+      <a href="reports.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-neutral-400);" style-hover="color:var(--color-text)">Reports</a>
+      <a href="compare.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-neutral-400);" style-hover="color:var(--color-text)">Compare</a>
+      <a href="intake.html" style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-text);">Get Started</a>
+    </div>
+  </nav>
+
+  <header style="padding:{{ headPad }}; max-width:1400px; margin:0 auto;">
+    <p style="margin:0 0 var(--space-3); font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-accent-300);">Intake Form</p>
+    <h1 style="margin:0 0 var(--space-4); max-width:30rem; font-size:{{ h1Size }}; line-height:1.06; letter-spacing:-0.025em; color:var(--color-text);">Tell us where to look.</h1>
+    <p style="margin:0; max-width:42rem; font-size:{{ leadSize }}; line-height:1.6; color:var(--color-neutral-300); text-wrap:pretty;">Pick your report and continue to our secure payment form. Most reports are delivered within five business days.</p>
+  </header>
+
+  <section data-screen-label="Form" style="padding:{{ bodyPad }}; max-width:1400px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:{{ bodyCols }}; gap:{{ bodyGap }}; align-items:start;">
+
+      <div style="display:flex; flex-direction:column; gap:var(--space-4); max-width:34rem;">
+        <p style="margin:0 0 var(--space-2); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">Your Report</p>
+        <sc-for list="{{ plans }}" as="plan" hint-placeholder-count="4">
+          <button type="button" onClick="{{ plan.select }}" style="{{ plan.style }}">
+            <span style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-4);">
+              <span style="font-family:var(--font-heading); font-size:1rem; color:var(--color-text);">{{ plan.name }}</span>
+              <span style="font-family:var(--font-heading); font-size:1rem; color:var(--color-accent);">{{ plan.price }}</span>
+            </span>
+            <span style="display:block; margin-top:var(--space-2); font-size:0.85rem; line-height:1.5; color:var(--color-neutral-300);">{{ plan.tagline }}</span>
+          </button>
+        </sc-for>
+        <a class="btn btn-primary btn-block" href="{{ checkoutHref }}" target="_blank" rel="noopener" style="margin-top:var(--space-2); letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; flex:0 0 auto;">Pay {{ selectedPrice }} — {{ selectedName }}</a>
+        <p style="margin:0; display:flex; gap:var(--space-3); font-size:0.82rem; line-height:1.55; color:var(--color-neutral-400);"><i class="ph ph-lock-simple" style="color:var(--color-accent); font-size:1rem; margin-top:2px;"></i><span>Opens our secure payment form in a new tab.</span></p>
+        <p style="margin:var(--space-2) 0 0; font-size:0.85rem; line-height:1.55; color:var(--color-neutral-400);">Not sure yet? <a href="compare.html">Compare all four tiers</a>.</p>
+      </div>
+
+
+      <div>
+        <p style="margin:0 0 var(--space-6); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--color-neutral-400);">What Creators Say</p>
+        <div style="display:grid; grid-template-columns:{{ quoteCols }}; gap:var(--space-6); align-items:stretch;">
+        <figure class="card" style="margin:0; display:flex; flex-direction:column; gap:var(--space-6); padding:var(--space-8);">
+          <span style="display:flex; gap:3px; color:var(--color-accent); font-size:0.9rem; letter-spacing:1px;">★★★★★</span>
+          <blockquote style="margin:0; font-family:var(--font-heading); font-style:italic; font-size:1.05rem; line-height:1.6; letter-spacing:-0.01em; color:var(--color-text); text-wrap:pretty;">"I'd been guessing for a year. The map showed me my problem wasn't content — it was that I disappeared for a week every month. Fixed that, grew 40% in 60 days."</blockquote>
+          <figcaption style="display:flex; align-items:center; gap:var(--space-4); margin-top:auto; padding-top:var(--space-6); border-top:1px solid var(--color-divider);">
+            <span style="flex:0 0 auto; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--color-accent-800); border:1px solid var(--color-accent-600); font-size:0.85rem; color:var(--color-accent-100);">M</span>
+            <span>
+              <span style="display:block; font-size:0.95rem; color:var(--color-text);">Maya R.</span>
+              <span style="display:block; margin-top:2px; font-size:0.8rem; color:var(--color-neutral-400);">Lifestyle · 12K followers</span>
+            </span>
+          </figcaption>
+        </figure>
+        <figure class="card" style="margin:0; display:flex; flex-direction:column; gap:var(--space-6); padding:var(--space-8);">
+          <span style="display:flex; gap:3px; color:var(--color-accent); font-size:0.9rem; letter-spacing:1px;">★★★★★</span>
+          <blockquote style="margin:0; font-family:var(--font-heading); font-style:italic; font-size:1.05rem; line-height:1.6; letter-spacing:-0.01em; color:var(--color-text); text-wrap:pretty;">"The scorecard alone was worth 10× the price. It told me exactly which of my formats the algorithm was rewarding — I doubled down and reach tripled."</blockquote>
+          <figcaption style="display:flex; align-items:center; gap:var(--space-4); margin-top:auto; padding-top:var(--space-6); border-top:1px solid var(--color-divider);">
+            <span style="flex:0 0 auto; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--color-accent-800); border:1px solid var(--color-accent-600); font-size:0.85rem; color:var(--color-accent-100);">D</span>
+            <span>
+              <span style="display:block; font-size:0.95rem; color:var(--color-text);">Devon K.</span>
+              <span style="display:block; margin-top:2px; font-size:0.8rem; color:var(--color-neutral-400);">Fitness · 34K followers</span>
+            </span>
+          </figcaption>
+        </figure>
+        <figure class="card" style="margin:0; display:flex; flex-direction:column; gap:var(--space-6); padding:var(--space-8);">
+          <span style="display:flex; gap:3px; color:var(--color-accent); font-size:0.9rem; letter-spacing:1px;">★★★★★</span>
+          <blockquote style="margin:0; font-family:var(--font-heading); font-style:italic; font-size:1.05rem; line-height:1.6; letter-spacing:-0.01em; color:var(--color-text); text-wrap:pretty;">"I finally understood why brands weren't reaching out. Six weeks after following the blueprint, I closed my first two paid partnerships."</blockquote>
+          <figcaption style="display:flex; align-items:center; gap:var(--space-4); margin-top:auto; padding-top:var(--space-6); border-top:1px solid var(--color-divider);">
+            <span style="flex:0 0 auto; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--color-accent-800); border:1px solid var(--color-accent-600); font-size:0.85rem; color:var(--color-accent-100);">S</span>
+            <span>
+              <span style="display:block; font-size:0.95rem; color:var(--color-text);">Sofia T.</span>
+              <span style="display:block; margin-top:2px; font-size:0.8rem; color:var(--color-neutral-400);">Food · 58K followers</span>
+            </span>
+          </figcaption>
+        </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;jotformId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Form&quot;}}">
+const PLANS = [
+  { id: 'scorecard', name: 'Creator Signal Scorecard', price: '$19.99', tagline: 'Know where you stand.', cta: 'Get My Scorecard' },
+  { id: 'growth-map', name: 'Creator Growth Map', price: '$99', tagline: "Find the growth you're leaving behind.", cta: 'Build My Growth Map' },
+  { id: 'blueprint', name: 'Creator Growth Blueprint', price: '$499', tagline: 'Your complete creator growth strategy.', cta: 'Get My Blueprint' },
+  { id: 'partnership', name: 'Creator Growth Partnership', price: '$1,197', tagline: 'Implement your strategy with expert guidance.', cta: 'Apply for Partnership' }
+];
+
+class Component extends DCLogic {
+  state = { w: 1440, selected: 'scorecard', submitted: false, email: 'you' };
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+    let want = '';
+    try {
+      const q = new URLSearchParams(location.search);
+      want = q.get('plan') || (location.hash || '').replace('#', '');
+    } catch (e) {}
+    if (PLANS.some(p => p.id === want)) this.setState({ selected: want });
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+  renderVals() {
+    const w = this.state.w, sel = this.state.selected;
+    const tablet = w <= 1024, mobile = w <= 768, small = w <= 480;
+    const current = PLANS.find(p => p.id === sel) || PLANS[0];
+    const jotformId = (this.props.jotformId || '').trim();
+    return {
+      plans: PLANS.map(p => ({
+        name: p.name, price: p.price, tagline: p.tagline,
+        select: () => this.setState({ selected: p.id }),
+        style: [
+          'text-align:left', 'cursor:pointer', 'width:100%',
+          'padding:var(--space-6)', 'border-radius:var(--radius-md)',
+          'background:' + (p.id === sel ? 'linear-gradient(180deg, var(--color-accent-900) 0%, var(--color-surface) 70%)' : 'var(--color-surface)'),
+          'border:1px solid ' + (p.id === sel ? 'var(--color-accent-600)' : 'var(--color-divider)'),
+          'font-family:var(--font-body)', 'transition:border-color .18s ease'
+        ].join('; ')
+      })),
+      selectedName: current.name,
+      selectedPrice: current.price,
+      submitLabel: current.cta,
+      useJotform: !!jotformId,
+      useNative: !jotformId,
+      jotformSrc: jotformId ? ('https://form.jotform.com/' + jotformId + '?plan=' + encodeURIComponent(current.name)) : '',
+      submitted: this.state.submitted,
+      showForm: !this.state.submitted,
+      emailValue: this.state.email,
+      onEmail: (e) => { this.email = e.target.value; },
+      submit: (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const fd = new FormData(form);
+        const email = (fd.get('email') || '').toString().trim();
+        const payload = {
+          _subject: 'Trace IQ intake — ' + current.name,
+          Product: current.name,
+          Price: current.price,
+          Name: (fd.get('name') || '').toString(),
+          Email: email,
+          Handle: (fd.get('handle') || '').toString(),
+          Platform: (fd.get('platform') || '').toString(),
+          'Other links': (fd.get('links') || '').toString(),
+          'Next 90 days': (fd.get('goal') || '').toString()
+        };
+        this.setState({ submitted: true, email: email || 'you' });
+        fetch('https://formsubmit.co/ajax/info@traceiq.co', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(() => {});
+      },
+      checkoutHref: ({
+        scorecard: 'https://pci.jotform.com/form/261696946708172',
+        'growth-map': 'https://pci.jotform.com/form/262137773178162',
+        blueprint: 'https://form.jotform.com/262138243599162',
+        partnership: 'https://pci.jotform.com/form/262137787684169'
+      })[sel] || 'store.html',
+      reset: () => this.setState({ submitted: false }),
+      bgVideoRef: (el) => {
+        if (!el || this.bg === el) return;
+        this.bg = el;
+        el.loop = false;
+        el.muted = true;
+        el.volume = 0;
+        const p = el.play();
+        if (p && p.catch) p.catch(() => {});
+      },
+      navPad: mobile ? 'var(--space-4) var(--space-6)' : 'var(--space-6) 4rem',
+      headPad: mobile ? '3rem var(--space-6) var(--space-8)' : '4.5rem 4rem var(--space-8)',
+      bodyPad: mobile ? '0 var(--space-6) 3rem' : '0 4rem 5rem',
+      bodyCols: tablet ? '1fr' : 'minmax(280px, 30rem) 1fr',
+      bodyGap: tablet ? 'var(--space-8)' : '4rem',
+      formPad: mobile ? 'var(--space-6)' : 'var(--space-8)',
+      quoteCols: mobile ? '1fr' : (tablet ? 'repeat(3, minmax(0,1fr))' : '1fr'),
+      fieldCols: mobile ? '1fr' : 'repeat(2, minmax(0,1fr))',
+      h1Size: small ? '2.4rem' : (mobile ? '2.9rem' : '3.6rem'),
+      leadSize: mobile ? '1rem' : '1.15rem',
+      navDisplay: tablet ? 'none' : 'flex'
+    };
+  }
+}
+</script>
+</body>
+</html>
