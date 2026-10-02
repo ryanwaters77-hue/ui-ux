@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mac Mini: cp to ~/Library/LaunchAgents/ then: launchctl load ~/Library/LaunchAgents/com.jevbot.run.plist
+     Replace /Users/YOU/jev-bot with your path. Also disable sleep: sudo pmset -a sleep 0 -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>Label</key><string>com.jevbot.run</string>
+  <key>WorkingDirectory</key><string>/Users/YOU/jev-bot</string>
+  <key>ProgramArguments</key><array>
+    <string>/Users/YOU/jev-bot/.venv/bin/python</string><string>-m</string><string>jevbot</string><string>run</string>
+  </array>
+  <key>KeepAlive</key><true/>
+  <key>RunAtLoad</key><true/>
+  <key>ThrottleInterval</key><integer>15</integer>
+  <key>StandardOutPath</key><string>/Users/YOU/jev-bot/data/bot.log</string>
+  <key>StandardErrorPath</key><string>/Users/YOU/jev-bot/data/bot.err</string>
+</dict></plist>

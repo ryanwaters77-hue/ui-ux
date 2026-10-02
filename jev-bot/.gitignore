@@ -1,0 +1,8 @@
+.env
+*.db
+data/*.csv
+data/*.parquet
+logs/
+__pycache__/
+.pytest_cache/
+KILL

@@ -1,0 +1,8 @@
+[Unit]
+Description=Jev bot nightly Opus review + backtest gate
+
+[Service]
+Type=oneshot
+User=jevbot
+WorkingDirectory=/opt/jev-bot
+ExecStart=/bin/sh -c '.venv/bin/python -m jevbot fetch-history && .venv/bin/python -m jevbot nightly && .venv/bin/python -m jevbot report'

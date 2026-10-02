@@ -1,0 +1,12 @@
+[Unit]
+Description=Jev bot dashboard (localhost only; reach it over SSH tunnel or Tailscale)
+After=network-online.target
+
+[Service]
+User=jevbot
+WorkingDirectory=/opt/jev-bot
+ExecStart=/opt/jev-bot/.venv/bin/uvicorn jevbot.dashboard:app --host 127.0.0.1 --port 8080
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

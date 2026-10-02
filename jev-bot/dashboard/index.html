@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jev Bot</title>
+<style>
+:root{--bg:#f7f7f5;--panel:#fff;--ink:#16181d;--muted:#6b7280;--line:#e5e7eb;--up:#0f8a5f;--down:#c2410c;--warn:#b45309;--accent:#2563eb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1013;--panel:#161a20;--ink:#e8eaee;--muted:#9aa3b2;--line:#262b33;--up:#34d399;--down:#fb923c;--warn:#fbbf24;--accent:#60a5fa}}
+:root[data-theme="dark"]{--bg:#0e1013;--panel:#161a20;--ink:#e8eaee;--muted:#9aa3b2;--line:#262b33;--up:#34d399;--down:#fb923c;--warn:#fbbf24;--accent:#60a5fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid var(--line)}
+h1{font-size:16px;margin:0}.pill{padding:2px 10px;border-radius:99px;font-size:12px;border:1px solid var(--line)}
+.ok{color:var(--up)}.bad{color:var(--down)}.warn{color:var(--warn)}
+main{padding:16px;display:grid;gap:16px;max-width:1200px;margin:0 auto}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.tile,.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+.tile b{display:block;font-size:20px;font-variant-numeric:tabular-nums}.tile span{color:var(--muted);font-size:12px}
+.card h2{font-size:13px;margin:0 0 8px;color:var(--muted);font-weight:600}
+.scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--muted);font-weight:500;font-size:12px}
+button{background:var(--down);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-weight:600;cursor:pointer}
+svg{width:100%;height:120px;display:block}.bar{display:inline-block;height:8px;border-radius:4px;background:var(--accent);vertical-align:middle}
+</style>
+</head>
+<body>
+<header>
+  <h1>Jev Bot · <span id="sym">…</span> <span id="mode" class="pill">…</span> <span id="kill" class="pill">…</span></h1>
+  <button id="killbtn" title="Flatten everything and halt">Kill switch</button>
+</header>
+<main>
+  <div class="tiles">
+    <div class="tile"><span>Equity</span><b id="eq">–</b></div>
+    <div class="tile"><span>Trades</span><b id="trades">–</b></div>
+    <div class="tile"><span>Win rate</span><b id="wr">–</b></div>
+    <div class="tile"><span>Jev latency (avg)</span><b id="lat">–</b></div>
+  </div>
+  <div class="card"><h2>Equity</h2><svg id="curve" viewBox="0 0 600 120" preserveAspectRatio="none"></svg></div>
+  <div class="card"><h2>Signals (newest first)</h2><div class="scroll"><table>
+    <thead><tr><th>Time</th><th>Price</th><th>p_win</th><th>Confidence</th><th>Gates</th><th>Action</th><th>Size</th><th>Verdict</th><th>Result</th></tr></thead>
+    <tbody id="sig"></tbody></table></div></div>
+  <div class="card"><h2>Calibration on own fills</h2><div class="scroll"><table>
+    <thead><tr><th>Question</th><th>n</th><th>Brier</th><th>ECE</th><th>Status</th></tr></thead>
+    <tbody id="cal"></tbody></table></div></div>
+  <div class="card"><h2>Events</h2><div class="scroll"><table><tbody id="ev"></tbody></table></div></div>
+</main>
+<script>
+const $=id=>document.getElementById(id), f=(x,d=2)=>x==null?'–':Number(x).toFixed(d);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function tick(){
+  let s; try{s=await (await fetch('api/state')).json()}catch(e){return}
+  $('sym').textContent=s.symbol;
+  $('mode').textContent=s.live?'LIVE':'PAPER'; $('mode').className='pill '+(s.live?'bad':'ok');
+  $('kill').textContent=s.killed?'HALTED: '+s.kill_reason:'running'; $('kill').className='pill '+(s.killed?'bad':'ok');
+  const eq=s.equity.map(e=>e.equity); $('eq').textContent=eq.length?'$'+f(eq.at(-1)):'–';
+  $('trades').textContent=s.stats.trades; $('wr').textContent=s.stats.win_rate==null?'–':f(s.stats.win_rate*100,1)+'%';
+  $('lat').textContent=s.stats.avg_latency_ms==null?'–':f(s.stats.avg_latency_ms,0)+' ms';
+  if(eq.length>1){const lo=Math.min(...eq),hi=Math.max(...eq),r=hi-lo||1;
+    $('curve').innerHTML=`<polyline fill="none" stroke="var(--accent)" stroke-width="2" vector-effect="non-scaling-stroke" points="${eq.map((v,i)=>`${i/(eq.length-1)*600},${115-(v-lo)/r*110}`).join(' ')}"/>`}
+  $('sig').innerHTML=s.signals.map(x=>{const g=x.gates||{},pass=Object.values(g).filter(Boolean).length;
+    return `<tr><td>${esc(x.ts.slice(5,16).replace('T',' '))}</td><td>${f(x.price)}</td>
+    <td><span class="bar" style="width:${(x.p_win||0)*60}px"></span> ${f(x.p_win,3)}</td><td>${f(x.confidence,2)}</td>
+    <td title="${esc(Object.entries(g).map(([k,v])=>k+':'+(v?'✓':'✗')).join(' '))}">${pass}/${Object.keys(g).length}</td>
+    <td class="${x.action==='long'?'ok':''}">${esc(x.action)}</td><td>${x.size_usd?'$'+f(x.size_usd,0):''}</td>
+    <td>${esc(x.verdict)}</td><td class="${x.result_bps>0?'ok':x.result_bps<0?'bad':''}">${x.result_bps==null?'':f(x.result_bps,1)+' bps'}</td></tr>`}).join('');
+  $('cal').innerHTML=s.calibration.map(c=>`<tr><td>${esc(c.question)}</td><td>${c.n}</td><td>${f(c.brier,4)}</td><td>${f(c.ece,4)}</td>
+    <td class="${c.calibrated?'ok':'warn'}">${c.calibrated?'calibrated':'not verified'}</td></tr>`).join('');
+  $('ev').innerHTML=s.events.map(e=>`<tr><td>${esc(e.ts.slice(5,19).replace('T',' '))}</td><td class="${e.level==='critical'||e.level==='error'?'bad':''}">${esc(e.level)}</td><td>${esc(e.kind)}</td><td>${esc(e.message)}</td></tr>`).join('');
+}
+$('killbtn').onclick=async()=>{ if(!confirm('Flatten everything and halt trading?'))return;
+  const t=prompt('Dashboard token (leave blank if none)')||''; await fetch('api/kill',{method:'POST',headers:t?{'x-dashboard-token':t}:{}}); tick(); };
+tick(); setInterval(tick,2000);
+</script>
+</body>
+</html>

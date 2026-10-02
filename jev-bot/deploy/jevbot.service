@@ -1,0 +1,18 @@
+# systemd unit for a Linux VPS. Install:
+#   sudo cp deploy/jevbot*.service deploy/jevbot*.timer /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now jevbot jevbot-dashboard jevbot-nightly.timer
+[Unit]
+Description=Jev trading bot (per-candle loop)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=jevbot
+WorkingDirectory=/opt/jev-bot
+ExecStart=/opt/jev-bot/.venv/bin/python -m jevbot run
+Restart=always
+RestartSec=15
+# A halted bot (KILL file) still runs but places no orders; restarts don't clear the halt.
+
+[Install]
+WantedBy=multi-user.target
